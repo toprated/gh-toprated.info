@@ -9,5 +9,6 @@ namespace TopRatedApp.Controllers
         {
             return View();
         }
+        
     }
 }
