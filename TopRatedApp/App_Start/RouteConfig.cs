@@ -8,7 +8,13 @@ namespace TopRatedApp
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-            
+
+            routes.MapRoute(
+                name: "Badges",
+                url: "Badges/LanguageBadge",
+                defaults: new { controller = "Badges", action = "GetLanguageBadge" }
+            );
+
             routes.MapRoute(
                 name: "Svg",
                 url: "badge",

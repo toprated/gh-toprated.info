@@ -11,7 +11,7 @@ namespace TopRatedApp.Controllers
         // GET: Svg
         public ActionResult GetBadge()
         {
-            return View("ConstSvg");
+            return PartialView("./../ConstSvg");
         }
     }
 }
