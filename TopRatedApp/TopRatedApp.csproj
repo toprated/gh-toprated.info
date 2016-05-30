@@ -156,10 +156,14 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Common\Badges\BadgeBase.cs" />
+    <Compile Include="Common\BadgeStyle.cs" />
+    <Compile Include="Common\Badges\LanguageBadge.cs" />
     <Compile Include="Common\Color.cs" />
     <Compile Include="Common\FontStyle.cs" />
     <Compile Include="Common\Language.cs" />
     <Compile Include="Common\Languages.cs" />
+    <Compile Include="Common\Section.cs" />
     <Compile Include="Common\SectionStyle.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Enums\SectionPosition.cs" />
@@ -168,6 +172,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\GithubApiHelper.cs" />
+    <Compile Include="Interfaces\IBadgeStyle.cs" />
     <Compile Include="Interfaces\IFontStyle.cs" />
     <Compile Include="Interfaces\ILanguage.cs" />
     <Compile Include="Interfaces\ISectionStyle.cs" />
