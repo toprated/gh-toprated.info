@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using TopRatedApp.Models;
 
 namespace TopRatedApp.Controllers
 {
@@ -8,7 +9,11 @@ namespace TopRatedApp.Controllers
         public ActionResult GetLanguageBadge()
         {
             Response.ContentType = "image/svg+xml";
-            return View("LanguageBadge");
+
+            var req = System.Web.HttpContext.Current.Request;
+            var viewModel = new LanguageBadgeViewModel(req);
+
+            return View("LanguageBadge", viewModel);
         }
     }
 }

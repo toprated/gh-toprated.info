@@ -14,13 +14,7 @@ namespace TopRatedApp
                 url: "Badges/LanguageBadge",
                 defaults: new { controller = "Badges", action = "GetLanguageBadge" }
             );
-
-            routes.MapRoute(
-                name: "Svg",
-                url: "badge",
-                defaults: new { controller = "Svg", action = "GetBadge" }
-            );
-
+            
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}",
