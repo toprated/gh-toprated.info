@@ -8,5 +8,13 @@ namespace TopRatedApp.Common
         public string FontSize { get; set; }
         public string FontColor { get; set; }
         public string FontShadowColor { get; set; }
+
+        public FontStyle(string fontFamily, string fontSize, string fontColor, string fontShadowColor)
+        {
+            FontFamily = fontFamily;
+            FontSize = fontSize;
+            FontColor = fontColor;
+            FontShadowColor = fontShadowColor;
+        }
     }
 }
