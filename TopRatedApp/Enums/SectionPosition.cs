@@ -4,6 +4,7 @@
     {
         Left,
         Middle,
-        Right
+        Right, 
+        OneSectionOnly
     }
 }

@@ -3,9 +3,10 @@
     public interface IBadgeStyle
     {
         ISectionStyle CommonTextStyle { get; set; }
-        string PaddingBorders { get; set; }
-        string PaddingMiddle { get; set; }
-        string PaddingTop { get; set; }
-        string PaddingBottom { get; set; }
+        int PaddingBorders { get; set; }
+        int PaddingMiddle { get; set; }
+        int PaddingTop { get; set; }
+        int PaddingBottom { get; set; }
+        int Radius { get; set; }
     }
 }

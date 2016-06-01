@@ -168,10 +168,15 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Enums\SectionPosition.cs" />
     <Compile Include="Enums\SectionType.cs" />
+    <Compile Include="Extensions\SectionExtensions.cs" />
+    <Compile Include="Extensions\SectionsExtension.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ColorHelper.cs" />
     <Compile Include="Helpers\GithubApiHelper.cs" />
+    <Compile Include="Helpers\PathHelper.cs" />
+    <Compile Include="Interfaces\IBadgeBase.cs" />
     <Compile Include="Interfaces\IBadgeStyle.cs" />
     <Compile Include="Interfaces\IFontStyle.cs" />
     <Compile Include="Interfaces\ILanguage.cs" />

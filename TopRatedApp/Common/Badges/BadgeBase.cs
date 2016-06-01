@@ -1,45 +1,55 @@
-﻿using TopRatedApp.Interfaces;
+﻿using System.Linq;
+using TopRatedApp.Extensions;
+using TopRatedApp.Helpers;
+using TopRatedApp.Interfaces;
 
 namespace TopRatedApp.Common.Badges
 {
-    public class BadgeBase
+    public class BadgeBase : IBadgeBase
     {
-        private string GetBackgroundColor(string theme)
+        public BadgeBase(string theme = "light")
         {
-            switch (theme)
-            {
-                case "light":
-                    return Color.Silver;
-                case "dark":
-                    return Color.DarkGrey;
-                default:
-                    return Color.Silver;
-            }
+            Theme = theme;
+            _sections = new Section[] {};
         }
 
-        public BadgeBase(string theme = "")
+        public BadgeBase(Section[] sections, string theme = "light")
         {
-            Theme = theme.Equals("") ? "light" : theme;
-            Sections = new Section[] {};
+            Theme = theme;
+            _sections = sections;
         }
 
-        public BadgeBase(Section[] sections, string theme = "")
-        {
-            Theme = theme.Equals("") ? "light" : theme;
-            Sections = sections;
-        }
+        private Section[] _sections;
 
-        public Section[] Sections { get; set; }
+        public Section[] Sections => _sections.GetFullSections(Style);
+        public double Width => Sections.Sum(s => s.W);
+        public double Height => Sections.Max(s => s.H);
+        public string BadgePath => PathHelper.GetSimpleRoundedRectPath(0, 0, Width, Height, Style.Radius);
 
         public string Theme { get; }
-        public IFontStyle FontStyle => new FontStyle(
-            "DejaVu Sans,Verdana,Geneva,sans-serif", 
-            "11", 
-            "", 
-            "");
-        public ISectionStyle CommonTextStyle => new SectionStyle(
-            FontStyle, 
-            "");
-        public IBadgeStyle Style => new BadgeStyle(CommonTextStyle, "5", "3", "4", "4");
+        public IFontStyle FontStyle => 
+            new FontStyle(
+                "DejaVu Sans,Verdana,Geneva,sans-serif", 
+                11, 
+                ColorHelper.GetFontColor(Theme),
+                ColorHelper.GetFontShadowColor(Theme));
+        public ISectionStyle CommonTextStyle =>
+            new SectionStyle(
+                FontStyle,
+                ColorHelper.GetBackgroundColor(Theme));
+        public IBadgeStyle Style => 
+            new BadgeStyle(
+                CommonTextStyle, 
+                5, 
+                3, 
+                3, 
+                2, 
+                3);
+
+        public void SetSections(Section[] sections)
+        {
+            _sections = sections;
+        }
+
     }
 }

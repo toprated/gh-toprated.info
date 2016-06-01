@@ -1,5 +1,7 @@
 ﻿using System.Threading.Tasks;
 using System.Web.Mvc;
+using TopRatedApp.Common;
+using TopRatedApp.Common.Badges;
 using TopRatedApp.Helpers;
 using TopRatedApp.Models;
 
@@ -16,8 +18,10 @@ namespace TopRatedApp.Controllers
 
             var user = req.QueryString["user"] ?? "user";
             var repo = req.QueryString["repo"] ?? "repo";
-            var language = await GithubApiHelper.GetLanguageName(user, repo);
-            var viewModel = new LanguageBadgeViewModel(language);
+            var theme = req.QueryString["theme"] ?? "light";
+            var languageName = await GithubApiHelper.GetLanguageName(user, repo);
+            var badge = new LanguageBadge(Languages.GetLangByName(languageName), theme);
+            var viewModel = new LanguageBadgeViewModel(badge);
 
             return View("LanguageBadge", viewModel);
         }
