@@ -8,13 +8,15 @@ namespace TopRatedApp.Common
         public string Name { get; set; }
         public string Color { get; set; }
         public string TextColor { get; set; }
+        public string TextShadowColor { get; set; }
         public SectionType SectionType { get; set; }
 
-        public Language(string name, string color, string textColor, SectionType sectionType)
+        public Language(string name, string color, string textColor, string textShadowColor, SectionType sectionType)
         {
             Name = name;
             Color = color;
             TextColor = textColor;
+            TextShadowColor = textShadowColor;
             SectionType = sectionType;
         }
     }

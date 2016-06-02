@@ -8,5 +8,7 @@
         int PaddingTop { get; set; }
         int PaddingBottom { get; set; }
         int Radius { get; set; }
+        double ShadowRight { get; set; }
+        double ShadowBottom { get; set; }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace TopRatedApp.Interfaces
+﻿using System.Drawing;
+
+namespace TopRatedApp.Interfaces
 {
     public interface IFontStyle
     {
@@ -7,7 +9,6 @@
         string FontColor { get; set; }
         string FontShadowColor { get; set; }
 
-        double GetTextWidth(string text);
-        double GetTextHeight(string text);
+        SizeF GetTextSize(string text);
     }
 }

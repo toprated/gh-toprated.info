@@ -10,8 +10,11 @@ namespace TopRatedApp.Common
         public int PaddingTop { get; set; }
         public int PaddingBottom { get; set; }
         public int Radius { get; set; }
+        public double ShadowRight { get; set; }
+        public double ShadowBottom { get; set; }
 
-        public BadgeStyle(ISectionStyle commonTextStyle, int paddingBorders, int paddingMiddle, int paddingTop, int paddingBottom, int radius)
+        public BadgeStyle(ISectionStyle commonTextStyle, int paddingBorders, int paddingMiddle, int paddingTop, int paddingBottom, int radius,
+            double shadowRight, double shadowBottom)
         {
             CommonTextStyle = commonTextStyle;
             PaddingBorders = paddingBorders;
@@ -19,6 +22,8 @@ namespace TopRatedApp.Common
             PaddingTop = paddingTop;
             PaddingBottom = paddingBottom;
             Radius = radius;
+            ShadowRight = shadowRight;
+            ShadowBottom = shadowBottom;
         }
     }
 }

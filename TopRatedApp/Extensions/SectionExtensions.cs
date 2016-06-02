@@ -1,20 +1,16 @@
-﻿using TopRatedApp.Common;
+﻿using System.Drawing;
+using TopRatedApp.Common;
 using TopRatedApp.Enums;
 
 namespace TopRatedApp.Extensions
 {
     public static class SectionExtensions
     {
-        public static double GetTextWidth(this Section section)
+        public static SizeF GetTexSize(this Section section)
         {
-            return section.SectionStyle.FontStyle.GetTextWidth(section.Text);
+            return section.SectionStyle.FontStyle.GetTextSize(section.Text);
         }
-
-        public static double GetTextHeight(this Section section)
-        {
-            return section.SectionStyle.FontStyle.GetTextHeight(section.Text);
-        }
-
+        
         public static SectionPosition GetPosition(this Section section, int index, int count)
         {
             if (index == 0)

@@ -10,7 +10,16 @@ namespace TopRatedApp.Common.Badges
             SetSections(new []
             {
                 new Section("language", SectionType.Text, CommonTextStyle),
-                new Section(language.Name, language.SectionType, new SectionStyle(FontStyle, language.Color))
+                new Section(
+                    language.Name, 
+                    language.SectionType, 
+                    new SectionStyle(
+                        new FontStyle(
+                            FontStyle.FontFamily,
+                            FontStyle.FontSize,
+                            language.TextColor,
+                            language.TextShadowColor), 
+                        language.Color))
             });
         }
     }

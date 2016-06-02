@@ -1,5 +1,4 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using TopRatedApp.Interfaces;
 
 namespace TopRatedApp.Common
@@ -19,22 +18,12 @@ namespace TopRatedApp.Common
             FontShadowColor = fontShadowColor;
         }
 
-        public double GetTextWidth(string text)
+        public SizeF GetTextSize(string text)
         {
             var bitmap = new Bitmap(1, 1);
             var graphics = Graphics.FromImage(bitmap);
-            var font = new Font(System.Drawing.FontFamily.GenericSansSerif, FontSize);
-            var dimension = graphics.MeasureString(text, font);
-            return Math.Ceiling(dimension.Width);
-        }
-
-        public double GetTextHeight(string text)
-        {
-            var bitmap = new Bitmap(1, 1);
-            var graphics = Graphics.FromImage(bitmap);
-            var font = new Font(System.Drawing.FontFamily.GenericSansSerif, FontSize);
-            var dimension = graphics.MeasureString(text, font);
-            return Math.Ceiling(dimension.Height);
+            var font = new Font(FontFamily, FontSize, GraphicsUnit.Pixel);
+            return graphics.MeasureString(text, font);
         }
     }
 }

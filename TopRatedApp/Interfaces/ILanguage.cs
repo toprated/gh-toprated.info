@@ -7,6 +7,7 @@ namespace TopRatedApp.Interfaces
         string Name { get; set; }
         string Color { get; set; }
         string TextColor { get; set; }
+        string TextShadowColor { get; set; }
         SectionType SectionType { get; set; }
     }
 }

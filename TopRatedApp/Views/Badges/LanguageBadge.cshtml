@@ -3,6 +3,9 @@
     Layout = null;
 
     var badge = Model.Badge;
+    var style = badge.Style;
+    var shR = style.ShadowRight;
+    var shB = style.ShadowRight;
 }
 <!--This is programming language badge-->
 <svg xmlns="http://www.w3.org/2000/svg" id="language-badge" height="@badge.Height" width="@badge.Width">
@@ -22,7 +25,7 @@
                 <path d="@s.Path" fill="@bcg" /> 
                 <g id="section-text-group">
                     <text font-family="@fam" font-size="@fsz" fill="@fsh" fill-opacity="0.4" 
-                          x="@(s.X + 0.5)" y="@(s.Y + 0.5)" text-anchor="middle" alignment-baseline="central">@s.Text</text>
+                          x="@(s.X + shB)" y="@(s.Y + shB)" text-anchor="middle" alignment-baseline="central">@s.Text</text>
                     <text font-family="@fam" font-size="@fsz" fill="@fcl" 
                           x="@s.X" y="@s.Y" text-anchor="middle" alignment-baseline="central">@s.Text</text>
                 </g>

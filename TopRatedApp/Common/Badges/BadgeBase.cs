@@ -7,13 +7,13 @@ namespace TopRatedApp.Common.Badges
 {
     public class BadgeBase : IBadgeBase
     {
-        public BadgeBase(string theme = "light")
+        public BadgeBase(string theme = "dark")
         {
             Theme = theme;
             _sections = new Section[] {};
         }
 
-        public BadgeBase(Section[] sections, string theme = "light")
+        public BadgeBase(Section[] sections, string theme = "dark")
         {
             Theme = theme;
             _sections = sections;
@@ -43,8 +43,9 @@ namespace TopRatedApp.Common.Badges
                 5, 
                 3, 
                 3, 
-                2, 
-                3);
+                3, 
+                3,
+                0.9, 0.9);
 
         public void SetSections(Section[] sections)
         {

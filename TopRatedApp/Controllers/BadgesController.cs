@@ -18,7 +18,7 @@ namespace TopRatedApp.Controllers
 
             var user = req.QueryString["user"] ?? "user";
             var repo = req.QueryString["repo"] ?? "repo";
-            var theme = req.QueryString["theme"] ?? "light";
+            var theme = req.QueryString["theme"] ?? "dark";
             var languageName = await GithubApiHelper.GetLanguageName(user, repo);
             var badge = new LanguageBadge(Languages.GetLangByName(languageName), theme);
             var viewModel = new LanguageBadgeViewModel(badge);
