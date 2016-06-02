@@ -9,13 +9,12 @@ namespace TopRatedApp.Controllers
 {
     public class BadgesController : Controller
     {
-        // GET: Badge
+        // GET: Language badge
         public async Task<ActionResult> GetLanguageBadge()
         {
             Response.ContentType = "image/svg+xml";
 
             var req = System.Web.HttpContext.Current.Request;
-
             var user = req.QueryString["user"] ?? "user";
             var repo = req.QueryString["repo"] ?? "repo";
             var theme = req.QueryString["theme"] ?? "dark";
@@ -24,6 +23,20 @@ namespace TopRatedApp.Controllers
             var viewModel = new LanguageBadgeViewModel(badge);
 
             return View("LanguageBadge", viewModel);
+        }
+
+        // GET: Simple language badge
+        public ActionResult GetSimpleLanguageBadge()
+        {
+            Response.ContentType = "image/svg+xml";
+
+            var req = System.Web.HttpContext.Current.Request;
+            var lang = req.QueryString["lang"] ?? "JavaScript";
+            var theme = req.QueryString["theme"] ?? "dark";
+            var badge = new LanguageBadge(Languages.GetLangByName(lang), theme);
+            var viewModel = new SimpleLanguageBadgeViewModel(badge);
+
+            return View("SimpleLanguageBadge", viewModel);
         }
     }
 }

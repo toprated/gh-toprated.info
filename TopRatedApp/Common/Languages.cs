@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Diagnostics;
+using System.Linq;
 using TopRatedApp.Enums;
 using TopRatedApp.Interfaces;
 
@@ -35,14 +36,18 @@ namespace TopRatedApp.Common
             new Language("TypeScript",   "#2b7489", Color.White, Color.Black, SectionType.Viml        )//+
         };
 
+        public static ILanguage UnknownLanguage = new Language("Unknown", Color.Silver, Color.White, Color.Black,
+            SectionType.Text);
+
         public static ILanguage GetLangByName(string name)
         {
-            return All.FirstOrDefault(l => l.Name.Equals(name));
+            Debug.WriteLine($"Getting ILanguage: {name}");
+            return All.FirstOrDefault(l => l.Name.Equals(name)) ?? UnknownLanguage;
         }
 
         public static ILanguage GetLangByType(SectionType sectionType)
         {
-            return All.FirstOrDefault(l => l.SectionType.Equals(sectionType));
+            return All.FirstOrDefault(l => l.SectionType.Equals(sectionType)) ?? UnknownLanguage;
         }
 
     }

@@ -45,7 +45,7 @@ namespace TopRatedApp.Common.Badges
                 3, 
                 3, 
                 3,
-                0.9, 0.9);
+                1.2, 0.9);
 
         public void SetSections(Section[] sections)
         {
