@@ -22,9 +22,15 @@ namespace TopRatedApp
             );
 
             routes.MapRoute(
+                name: "About",
+                url: "About",
+                defaults: new { controller = "Site", action = "About" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}",
-                defaults: new { controller = "Home", action = "Index" }
+                url: "",
+                defaults: new { controller = "Site", action = "Index" }
             );
         }
     }
