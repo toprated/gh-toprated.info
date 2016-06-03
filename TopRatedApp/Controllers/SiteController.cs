@@ -27,11 +27,23 @@ namespace TopRatedApp.Controllers
         {
             return View("Badges");
         }
-
-        // GET: Badges
+        
+        // GET: Statistics
         public ActionResult Statistics()
         {
             return View("Statistics");
+        }
+
+        // GET: Top1000
+        public ActionResult Top1000()
+        {
+            return View("Top1000");
+        }
+
+        // GET: Languages
+        public ActionResult Languages()
+        {
+            return View("Languages");
         }
 
     }

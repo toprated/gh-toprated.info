@@ -15,6 +15,8 @@ namespace TopRatedApp
             //Site pages:
             routes.RouteSitePage("Badges");
             routes.RouteSitePage("Statistics");
+            routes.RouteSitePage("Top1000");
+            routes.RouteSitePage("Languages");
             routes.RouteSitePage("About");
             routes.RouteSitePage("Contact");
             routes.RouteSiteIndexPage();
