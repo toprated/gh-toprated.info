@@ -54,10 +54,12 @@
 
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - <a href ="https://github.com/toprated/gh-toprated.info">TopRated</a> by <a href="https://github.com/elv1s42">elv1s42</a></p>
-        </footer>
+            <footer class="col-lg-12">
+                <hr>
+                <p>
+                    &copy; @DateTime.Now.Year - <a href="https://github.com/toprated/gh-toprated.info">TopRated</a> by <a href="https://github.com/elv1s42">elv1s42</a>
+                </p>
+            </footer>
     </div>
 
     @RenderSection("scripts", required: false)

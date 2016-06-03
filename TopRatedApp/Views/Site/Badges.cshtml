@@ -4,7 +4,7 @@
     ViewBag.Title = "Badges";
     var languages = Languages.All;
     var count = languages.Length;
-    var middle = count/2;
+    var middle = (count % 2 == 0) ? count/2 : (count/2 + 1);
 }
 
 <h2>@ViewBag.Title</h2>
@@ -38,26 +38,29 @@
 <div class="col-md-6">
     <table class="table">
         <thead>
-            <tr>
-                <th>#</th>
-                <th>Language</th>
-                <th>Badge</th>
-            </tr>
+        <tr>
+            <th>#</th>
+            <th>Language</th>
+            <th>Badge</th>
+        </tr>
         </thead>
         <tbody>
-            @for (var i = middle; i < count; i++)
-            {
-                var lang = languages[i];
-                <tr>
-                    <td>@(i + 1)</td>
-                    <td>@lang.Name</td>
-                    <td>
-                        <img ng-src="/Badges/SimpleLanguageBadge?lang=@lang.EncodedName"
-                             src="/Badges/SimpleLanguageBadge?lang=@lang.EncodedName" alt="@lang.Name">
-                    </td>
-                </tr>
+        @for (var i = middle; i < count; i++)
+        {
+            var lang = languages[i];
+            <tr>
+                <td>@(i + 1)</td>
+                <td>@lang.Name</td>
+                <td>
+                    <img ng-src="/Badges/SimpleLanguageBadge?lang=@lang.EncodedName"
+                         src="/Badges/SimpleLanguageBadge?lang=@lang.EncodedName" alt="@lang.Name">
+                </td>
+            </tr>
 
-            }
+        }
         </tbody>
     </table>
+</div>
+<div class="col-lg-12">
+    <p>Unknown badge is used when GitHub API does not return language information or returned language is not found.</p>
 </div>

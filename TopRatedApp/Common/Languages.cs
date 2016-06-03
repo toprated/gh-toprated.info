@@ -32,12 +32,13 @@ namespace TopRatedApp.Common
             new Language("Shell",        "Shell",        "#89e051", Color.White, Color.Black, SectionType.Shell       ),//+
             new Language("Swift",        "Swift",        "#ffac45", Color.White, Color.Black, SectionType.Swift       ),//+
             new Language("TeX",          "TeX",          "#3D6117", Color.White, Color.Black, SectionType.Tex         ),//+
+            new Language("TypeScript",   "TypeScript",   "#2b7489", Color.White, Color.Black, SectionType.Viml        ),//+
             new Language("VimL",         "VimL",         "#199f4b", Color.White, Color.Black, SectionType.TypeScript  ),//+
-            new Language("TypeScript",   "TypeScript",   "#2b7489", Color.White, Color.Black, SectionType.Viml        )//+
+
+            new Language("Unknown",      "Unknown",   Color.Silver, Color.White, Color.Black, SectionType.Text)//+
         };
 
-        public static ILanguage UnknownLanguage = new Language("Unknown", "Unknown", Color.Silver, Color.White, Color.Black,
-            SectionType.Text);
+        public static ILanguage UnknownLanguage => All.First(l => l.Name.Equals("Unknown"));
 
         public static ILanguage GetLangByName(string name)
         {
