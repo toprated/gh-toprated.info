@@ -1,7 +1,63 @@
-﻿
+﻿@using TopRatedApp.Common
+
 @{
     ViewBag.Title = "Badges";
+    var languages = Languages.All;
+    var count = languages.Length;
+    var middle = count/2;
 }
 
 <h2>@ViewBag.Title</h2>
 
+<div class="col-md-6">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Language</th>
+                <th>Badge</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (var i = 0; i < middle; i++)
+            {
+                var lang = languages[i];
+                <tr>
+                    <td>@(i + 1)</td>
+                    <td>@lang.Name</td>
+                    <td>
+                        <img ng-src="/Badges/SimpleLanguageBadge?lang=@lang.EncodedName"
+                             src="/Badges/SimpleLanguageBadge?lang=@lang.EncodedName" alt="@lang.Name">
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+</div>
+<div class="col-md-6">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Language</th>
+                <th>Badge</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (var i = middle; i < count; i++)
+            {
+                var lang = languages[i];
+                <tr>
+                    <td>@(i + 1)</td>
+                    <td>@lang.Name</td>
+                    <td>
+                        <img ng-src="/Badges/SimpleLanguageBadge?lang=@lang.EncodedName"
+                             src="/Badges/SimpleLanguageBadge?lang=@lang.EncodedName" alt="@lang.Name">
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+</div>
