@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
+using TopRatedApp.Extensions;
 
 namespace TopRatedApp
 {
@@ -8,30 +9,15 @@ namespace TopRatedApp
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-
-            routes.MapRoute(
-                name: "Badges/LanguageBadge",
-                url: "Badges/LanguageBadge",
-                defaults: new { controller = "Badges", action = "GetLanguageBadge" }
-            );
-
-            routes.MapRoute(
-                name: "Badges/SimpleLanguageBadge",
-                url: "Badges/SimpleLanguageBadge",
-                defaults: new { controller = "Badges", action = "GetSimpleLanguageBadge" }
-            );
-
-            routes.MapRoute(
-                name: "About",
-                url: "About",
-                defaults: new { controller = "Site", action = "About" }
-            );
-
-            routes.MapRoute(
-                name: "Default",
-                url: "",
-                defaults: new { controller = "Site", action = "Index" }
-            );
+            //Badges:
+            routes.MapRoute("Badges/LanguageBadge", "Badges/LanguageBadge", new { controller = "Badges", action = "GetLanguageBadge" });
+            routes.MapRoute("Badges/SimpleLanguageBadge", "Badges/SimpleLanguageBadge", new { controller = "Badges", action = "GetSimpleLanguageBadge" });
+            //Site pages:
+            routes.RouteSitePage("Badges");
+            routes.RouteSitePage("Statistics");
+            routes.RouteSitePage("About");
+            routes.RouteSitePage("Contact");
+            routes.RouteSiteIndexPage();
         }
     }
 }

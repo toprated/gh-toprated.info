@@ -3,19 +3,17 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>TopRated | @ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/plotly")
     <script type="text/javascript">
         $(document).ready(function () {
             $('li.active').removeClass('active');
-            $('a[href="' + location.pathname + '"]').closest('li').addClass('active');
+            $(`a[href="${location.pathname}"]`).closest('li').addClass('active');
         });
-        //$(".nav a").on("click", function () {
-        //    $(".nav").find(".active").removeClass("active");
-        //    $(this).parent().addClass("active");});
     </script>
 </head>
 <body>
@@ -25,8 +23,10 @@
                 @Html.ActionLink("Top Rated", "Index", "Site", new {area = ""}, new {@class = "navbar-brand"})
             </div>
             <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav navbar-right">
                     <li class="active"><a href="/">Home</a></li>
+                    <li><a href="/Badges">Badges</a></li>
+                    <li><a href="/Statistics">Statistics</a></li>
                     <li><a href="/About">About</a></li>
                     <li><a href="/Contact">Contact</a></li>
                     <li class="dropdown">

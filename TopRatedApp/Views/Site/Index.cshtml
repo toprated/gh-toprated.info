@@ -1,11 +1,12 @@
 ﻿@model dynamic
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Home";
 }
 
 <main>
 
-    <h2>Home page</h2>
+    <h2>@ViewBag.Title</h2>
     <h3>Badges:</h3>
     <div style="display: table">
         <div style="display: table-cell">

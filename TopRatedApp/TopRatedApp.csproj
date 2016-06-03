@@ -115,6 +115,8 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\plotly.js" />
+    <Content Include="Scripts\plotly.min.js" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\web.config" />
     <Content Include="Scripts\jquery-2.2.3.min.map" />
@@ -124,6 +126,9 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Site\About.cshtml" />
+    <Content Include="Views\Site\Contact.cshtml" />
+    <Content Include="Views\Site\Badges.cshtml" />
+    <Content Include="Views\Site\Statistics.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -177,6 +182,7 @@
     <Compile Include="Controllers\SiteController.cs" />
     <Compile Include="Enums\SectionPosition.cs" />
     <Compile Include="Enums\SectionType.cs" />
+    <Compile Include="Extensions\RouteCollectionExtensions.cs" />
     <Compile Include="Extensions\SectionExtensions.cs" />
     <Compile Include="Extensions\SectionsExtension.cs" />
     <Compile Include="Global.asax.cs">
