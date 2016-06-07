@@ -3,6 +3,8 @@ using System.Diagnostics;
 using System.Net;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
+using TopRatedApp.Common;
+using TopRatedApp.Interfaces;
 
 namespace TopRatedApp.Helpers
 {
@@ -43,6 +45,20 @@ namespace TopRatedApp.Helpers
             var jObj = await GetJObject(url);
 
             return jObj["language"].Value<string>();
+        }
+
+        public static async Task<IRepoData> GetRepoData(string user, string repo)
+        {
+            var url = $"https://api.github.com/repos/{user}/{repo}";
+
+            var jObj = await GetJObject(url);
+
+            var lang = Languages.GetLangByName(jObj["language"].Value<string>());
+            var stars = jObj["stargazers_count"].Value<int>();
+            var id = jObj["stargazers_count"].Value<string>();
+            var repoData = new RepoData(id, lang, stars);
+
+            return repoData;
         }
     }
 }

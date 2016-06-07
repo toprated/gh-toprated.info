@@ -12,6 +12,8 @@ namespace TopRatedApp.Helpers
                     return Color.Silver;
                 case "dark":
                     return Color.DarkGrey;
+                case "toprated":
+                    return Color.TopRated;
                 default:
                     return Color.Silver;
             }
@@ -25,6 +27,8 @@ namespace TopRatedApp.Helpers
                     return Color.Black;
                 case "dark":
                     return Color.White;
+                case "toprated":
+                    return Color.White;
                 default:
                     return Color.Black;
             }
@@ -37,6 +41,8 @@ namespace TopRatedApp.Helpers
                 case "light":
                     return Color.White;
                 case "dark":
+                    return Color.Black;
+                case "toprated":
                     return Color.Black;
                 default:
                     return Color.White;

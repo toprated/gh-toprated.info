@@ -8,5 +8,6 @@
         public static string White = "#FFF";
         public static string Black = "#000";
         public static string Gold = "#FFD700";
+        public static string TopRated = "#07c";
     }
 }

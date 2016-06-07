@@ -175,10 +175,12 @@
     <Compile Include="Common\Badges\BadgeBase.cs" />
     <Compile Include="Common\BadgeStyle.cs" />
     <Compile Include="Common\Badges\LanguageBadge.cs" />
+    <Compile Include="Common\Badges\TopRatedBadge.cs" />
     <Compile Include="Common\Color.cs" />
     <Compile Include="Common\FontStyle.cs" />
     <Compile Include="Common\Language.cs" />
     <Compile Include="Common\Languages.cs" />
+    <Compile Include="Common\RepoData.cs" />
     <Compile Include="Common\Section.cs" />
     <Compile Include="Common\SectionStyle.cs" />
     <Compile Include="Controllers\SiteController.cs" />
@@ -197,9 +199,11 @@
     <Compile Include="Interfaces\IBadgeStyle.cs" />
     <Compile Include="Interfaces\IFontStyle.cs" />
     <Compile Include="Interfaces\ILanguage.cs" />
+    <Compile Include="Interfaces\IRepoData.cs" />
     <Compile Include="Interfaces\ISectionStyle.cs" />
     <Compile Include="Models\SimpleLanguageBadgeViewModel.cs" />
     <Compile Include="Models\LanguageBadgeViewModel.cs" />
+    <Compile Include="Models\TopRatedBadgeViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\BadgesController.cs" />
   </ItemGroup>
