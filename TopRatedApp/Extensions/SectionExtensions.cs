@@ -13,6 +13,10 @@ namespace TopRatedApp.Extensions
         
         public static SectionPosition GetPosition(this Section section, int index, int count)
         {
+            if (index == 0 && count == 1)
+            {
+                return SectionPosition.OneSectionOnly;
+            }
             if (index == 0)
             {
                 return SectionPosition.Left;
@@ -20,10 +24,6 @@ namespace TopRatedApp.Extensions
             if (index == count - 1)
             {
                 return SectionPosition.Right;
-            }
-            if (index == 0 && count == 1)
-            {
-                return SectionPosition.OneSectionOnly;
             }
             return SectionPosition.Middle;
         }

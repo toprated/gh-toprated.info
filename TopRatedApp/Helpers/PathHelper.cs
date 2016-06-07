@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using TopRatedApp.Enums;
 
 namespace TopRatedApp.Helpers
@@ -34,7 +35,7 @@ namespace TopRatedApp.Helpers
                 case SectionPosition.Left:           return GetRoundedRectPath(x, y, w + 1, h, r, 0, 0, r);
                 case SectionPosition.Middle:         return GetRoundedRectPath(x, y, w + 1, h, 0, 0, 0, 0);
                 case SectionPosition.Right:          return GetRoundedRectPath(x, y, w, h, 0, r, r, 0);
-                case SectionPosition.OneSectionOnly: return GetRoundedRectPath(x, y, w, h, r, r, r, r);
+                case SectionPosition.OneSectionOnly: return GetSimpleRoundedRectPath(x, y, w, h, r);
                 default:
                     throw new ArgumentOutOfRangeException(nameof(position), position, null);
             }

@@ -1,4 +1,5 @@
-﻿@model TopRatedApp.Models.LanguageBadgeViewModel
+﻿@using System.Globalization
+@model TopRatedApp.Models.LanguageBadgeViewModel
 @{
     Layout = null;
 
@@ -21,13 +22,19 @@
             var fcl = fs.FontColor;
             var fsh = fs.FontShadowColor;
             var bcg = s.SectionStyle.BackgroundColor;
+
+            var tsX = (s.X + shR).ToString("G", CultureInfo.InvariantCulture);
+            var tsY = (s.Y + shB).ToString("G", CultureInfo.InvariantCulture);
+            var tX = (s.X).ToString("G", CultureInfo.InvariantCulture);
+            var tY = (s.Y).ToString("G", CultureInfo.InvariantCulture);
+
             <g id="section-group">
                 <path d="@s.Path" fill="@bcg" /> 
                 <g id="section-text-group">
                     <text font-family="@fam" font-size="@fsz" fill="@fsh" fill-opacity="0.8" 
-                          x="@(s.X + shR)" y="@(s.Y + shB)" text-anchor="middle" alignment-baseline="central">@s.Text</text>
+                          x="@(tsX)" y="@(tsY)" text-anchor="middle" alignment-baseline="central">@s.Text</text>
                     <text font-family="@fam" font-size="@fsz" fill="@fcl" 
-                          x="@s.X" y="@s.Y" text-anchor="middle" alignment-baseline="central">@s.Text</text>
+                          x="@tX" y="@tY" text-anchor="middle" alignment-baseline="central">@s.Text</text>
                 </g>
             </g>
         }
