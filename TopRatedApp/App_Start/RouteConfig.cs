@@ -11,6 +11,7 @@ namespace TopRatedApp
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             //Badges:
             routes.MapRoute("Badges/LanguageBadge", "Badges/LanguageBadge", new { controller = "Badges", action = "GetLanguageBadge" });
+            routes.MapRoute("Badges/TopRatedBadge", "Badges/TopRatedBadge", new { controller = "Badges", action = "GetTopRatedBadge" });
             routes.MapRoute("Badges/SimpleLanguageBadge", "Badges/SimpleLanguageBadge", new { controller = "Badges", action = "GetSimpleLanguageBadge" });
             //Site pages:
             routes.RouteSitePage("Badges");

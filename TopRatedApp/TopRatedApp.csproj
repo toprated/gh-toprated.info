@@ -131,6 +131,7 @@
     <Content Include="Views\Site\Statistics.cshtml" />
     <Content Include="Views\Site\Top1000.cshtml" />
     <Content Include="Views\Site\Languages.cshtml" />
+    <Content Include="Views\Badges\TopRatedBadge.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

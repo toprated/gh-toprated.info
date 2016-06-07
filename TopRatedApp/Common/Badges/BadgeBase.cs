@@ -40,12 +40,12 @@ namespace TopRatedApp.Common.Badges
         public IBadgeStyle Style => 
             new BadgeStyle(
                 CommonTextStyle, 
-                5, 
-                3, 
-                3, 
-                3, 
-                3,
-                1.2, 0.9);
+                paddingBorders: 2, 
+                paddingMiddle: 1, 
+                paddingTop: 2, 
+                paddingBottom: 2, 
+                radius: 3,
+                shadowRight: 1.2, shadowBottom: 0.9);
 
         public void SetSections(Section[] sections)
         {

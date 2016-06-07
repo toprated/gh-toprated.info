@@ -18,11 +18,17 @@ namespace TopRatedApp.Common
             FontShadowColor = fontShadowColor;
         }
 
+        /*var bitmap = new Bitmap(1, 1);
+            var graphics = Graphics.FromImage(bitmap);
+            var font = new Font(FontFamily.GenericSansSerif, fontSize);
+            var dimension = graphics.MeasureString(text, font);
+            return (int)Math.Ceiling(dimension.Width);*/
+
         public SizeF GetTextSize(string text)
         {
             var bitmap = new Bitmap(1, 1);
             var graphics = Graphics.FromImage(bitmap);
-            var font = new Font(FontFamily, FontSize, GraphicsUnit.Pixel);
+            var font = new Font(FontFamily, FontSize);//, GraphicsUnit.Pixel);
             return graphics.MeasureString(text, font);
         }
     }

@@ -25,6 +25,23 @@ namespace TopRatedApp.Controllers
             return View("LanguageBadge", viewModel);
         }
 
+        // GET: Language badge
+        public async Task<ActionResult> GetTopRatedBadge()
+        {
+            Response.ContentType = "image/svg+xml";
+
+            var req = System.Web.HttpContext.Current.Request;
+            var user = req.QueryString["user"] ?? "user";
+            var repo = req.QueryString["repo"] ?? "repo";
+            var theme = req.QueryString["theme"] ?? "dark";
+            var expand = bool.Parse(req.QueryString["expand"] ?? "false");
+            var repoData = await GithubApiHelper.GetRepoData(user, repo);
+            var badge = new TopRatedBadge("0.05%", repoData.Lang, theme, expand);
+            var viewModel = new TopRatedBadgeViewModel(badge);
+
+            return View("TopRatedBadge", viewModel);
+        }
+
         // GET: Simple language badge
         public ActionResult GetSimpleLanguageBadge()
         {
