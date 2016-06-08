@@ -42,8 +42,8 @@ namespace TopRatedApp.Common.Badges
                 CommonTextStyle, 
                 paddingBorders: 2, 
                 paddingMiddle: 1, 
-                paddingTop: 2, 
-                paddingBottom: 2, 
+                paddingTop: 1, 
+                paddingBottom: 1, 
                 radius: 3,
                 shadowRight: 1.2, shadowBottom: 0.9);
 
