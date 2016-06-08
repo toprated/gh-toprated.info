@@ -17,7 +17,7 @@ namespace TopRatedApp.Extensions
             {
                 return SectionPosition.OneSectionOnly;
             }
-            if (index == 0)
+            if (index == 0 && count != 1)
             {
                 return SectionPosition.Left;
             }

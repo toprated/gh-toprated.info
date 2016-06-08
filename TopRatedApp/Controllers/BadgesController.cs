@@ -34,9 +34,9 @@ namespace TopRatedApp.Controllers
             var user = req.QueryString["user"] ?? "user";
             var repo = req.QueryString["repo"] ?? "repo";
             var theme = req.QueryString["theme"] ?? "dark";
-            var expand = bool.Parse(req.QueryString["expand"] ?? "false");
+            var size = req.QueryString["topRatedBadgeSize"] ?? "medium";
             var repoData = await GithubApiHelper.GetRepoData(user, repo);
-            var badge = new TopRatedBadge("0.05%", repoData.Lang, theme, expand);
+            var badge = new TopRatedBadge("0.05%", repoData.Lang, theme, size);
             var viewModel = new TopRatedBadgeViewModel(badge);
 
             return View("TopRatedBadge", viewModel);
