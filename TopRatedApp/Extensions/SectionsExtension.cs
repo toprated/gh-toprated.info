@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using TopRatedApp.Common;
 using TopRatedApp.Enums;
 using TopRatedApp.Helpers;
@@ -25,8 +24,8 @@ namespace TopRatedApp.Extensions
                 double w;
                 double x;
                 var textSize = section.GetTexSize();
-                var textWidth = Convert.ToInt32(textSize.Width);
-                var textHeight = Convert.ToInt32(textSize.Height);
+                var textWidth = section.SectionType.Equals(SectionType.Icon) ? section.W - pBr - pMd : Convert.ToInt32(textSize.Width);
+                var textHeight = section.SectionType.Equals(SectionType.Icon) ? section.H - pTp - pBt : Convert.ToInt32(textSize.Height);
                 var sectionPosition = section.GetPosition(i, count);
                 switch (sectionPosition)
                 {
@@ -57,7 +56,7 @@ namespace TopRatedApp.Extensions
                 //                $"i: {i}, c: {count}, x: {x}, y: {y}, w: {w}, h: {h}, bW: {badgeWidth}, bH: {badgeHeight}");
 
                 sections[i].H = h;
-                sections[i].W = w;
+                sections[i].W = w;                 
                 sections[i].X = x;
                 sections[i].Y = y;
                 sections[i].Path = sectionPath;

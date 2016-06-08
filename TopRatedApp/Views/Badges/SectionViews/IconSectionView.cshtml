@@ -1,0 +1,26 @@
+﻿@using System.Diagnostics
+@using TopRatedApp.Interfaces
+
+@{
+    Layout = null;
+    ViewBag.Title = "IconSectionView";
+
+    var s = ViewData["section"] as ISection;
+    Debug.Assert(s != null, "s != null");
+
+    var style = ViewData["badgeStyle"] as IBadgeStyle;
+    Debug.Assert(style != null, "style != null");
+    
+    var bcg = s.SectionStyle.BackgroundColor;
+    var pl = style.PaddingBorders;
+}
+
+<g id="section-group">
+    <path d="@s.Path" fill="@bcg"/>
+    <g id="section-text-group">
+        <circle id="logo-circle" cx="@(pl+10)" cy="10" stroke="black" style="stroke-width: 0;" r="10" fill="#FFA500" />
+        <text fill="@bcg" x="@(pl+1)" y="14" id="logo-t-text" style="font-family: Arial;font-size: 16px;font-style: normal;" dy="" dx="">T</text>
+        <text fill="@bcg" x="@(pl+8)" y="18" id="logo-r-text" style="font-family: Arial;font-size: 16px;font-style: normal;" dy="" dx="">R</text>
+    </g>
+</g>
+

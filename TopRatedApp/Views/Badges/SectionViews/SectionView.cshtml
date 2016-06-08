@@ -1,0 +1,28 @@
+﻿@using System.Diagnostics
+@using TopRatedApp.Enums
+@using TopRatedApp.Interfaces
+
+@{
+    Layout = null;
+    ViewBag.Title = "SectionView";
+
+    var s = ViewData["section"] as ISection;
+    Debug.Assert(s != null, "s != null");
+
+    var style = ViewData["badgeStyle"] as IBadgeStyle;
+    Debug.Assert(style != null, "style != null");
+}
+
+@switch (s.SectionType)
+{
+    case SectionType.Text:
+        @Html.Partial("SectionViews/TextSectionView", new ViewDataDictionary { { "section", s }, { "badgeStyle", style } })
+        break;
+    case SectionType.Icon:
+        @Html.Partial("SectionViews/IconSectionView", new ViewDataDictionary { { "section", s }, { "badgeStyle", style } })
+        break;
+    default:
+        @Html.Partial("SectionViews/TextSectionView", new ViewDataDictionary { { "section", s }, { "badgeStyle", style } })
+        break;
+}
+

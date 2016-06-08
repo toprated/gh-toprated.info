@@ -3,7 +3,7 @@ using TopRatedApp.Interfaces;
 
 namespace TopRatedApp.Common
 {
-    public class Section
+    public class Section : ISection
     {
         public Section(string text, SectionType sectionType, ISectionStyle style)
         {
@@ -12,6 +12,18 @@ namespace TopRatedApp.Common
             SectionStyle = style;
             W = 0;
             H = 0;
+            X = 0;
+            Y = 0;
+            Path = "";
+        }
+
+        public Section(SectionType sectionType, ISectionStyle style, double w, double h)
+        {
+            Text = "";
+            SectionType = sectionType;
+            SectionStyle = style;
+            W = w;
+            H = h;
             X = 0;
             Y = 0;
             Path = "";

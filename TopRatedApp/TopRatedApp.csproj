@@ -132,6 +132,10 @@
     <Content Include="Views\Site\Top1000.cshtml" />
     <Content Include="Views\Site\Languages.cshtml" />
     <Content Include="Views\Badges\TopRatedBadge.cshtml" />
+    <Content Include="Views\Logos\MainLogo.cshtml" />
+    <Content Include="Views\Badges\SectionViews\TextSectionView.cshtml" />
+    <Content Include="Views\Badges\SectionViews\IconSectionView.cshtml" />
+    <Content Include="Views\Badges\SectionViews\SectionView.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -184,6 +188,7 @@
     <Compile Include="Common\RepoData.cs" />
     <Compile Include="Common\Section.cs" />
     <Compile Include="Common\SectionStyle.cs" />
+    <Compile Include="Controllers\LogosController.cs" />
     <Compile Include="Controllers\SiteController.cs" />
     <Compile Include="Enums\SectionPosition.cs" />
     <Compile Include="Enums\SectionType.cs" />
@@ -201,6 +206,7 @@
     <Compile Include="Interfaces\IFontStyle.cs" />
     <Compile Include="Interfaces\ILanguage.cs" />
     <Compile Include="Interfaces\IRepoData.cs" />
+    <Compile Include="Interfaces\ISection.cs" />
     <Compile Include="Interfaces\ISectionStyle.cs" />
     <Compile Include="Models\SimpleLanguageBadgeViewModel.cs" />
     <Compile Include="Models\LanguageBadgeViewModel.cs" />

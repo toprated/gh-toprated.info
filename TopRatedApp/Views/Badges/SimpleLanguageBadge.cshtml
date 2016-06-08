@@ -1,12 +1,9 @@
-﻿@using System.Globalization
-@model TopRatedApp.Models.SimpleLanguageBadgeViewModel
+﻿@model TopRatedApp.Models.SimpleLanguageBadgeViewModel
 @{
     Layout = null;
 
     var badge = Model.Badge;
     var style = badge.Style;
-    var shR = style.ShadowRight;
-    var shB = style.ShadowRight;
 }
 <!--This is programming language badge-->
 <svg xmlns="http://www.w3.org/2000/svg" id="language-badge" height="@badge.Height" width="@badge.Width">
@@ -16,27 +13,7 @@
     <g id="main-group">
         @foreach (var s in badge.Sections)
         {
-            var fs = s.SectionStyle.FontStyle;
-            var fam = fs.FontFamily;
-            var fsz = fs.FontSize;
-            var fcl = fs.FontColor;
-            var fsh = fs.FontShadowColor;
-            var bcg = s.SectionStyle.BackgroundColor;
-
-            var tsX = (s.X + shR).ToString("G", CultureInfo.InvariantCulture);
-            var tsY = (s.Y + shB).ToString("G", CultureInfo.InvariantCulture);
-            var tX = (s.X).ToString("G", CultureInfo.InvariantCulture);
-            var tY = (s.Y).ToString("G", CultureInfo.InvariantCulture);
-
-            <g id="section-group">
-                <path d="@s.Path" fill="@bcg" /> 
-                <g id="section-text-group">
-                    <text font-family="@fam" font-size="@fsz" fill="@fsh" fill-opacity="0.8" 
-                          x="@(tsX)" y="@(tsY)" text-anchor="middle" alignment-baseline="central">@s.Text</text>
-                    <text font-family="@fam" font-size="@fsz" fill="@fcl" 
-                          x="@tX" y="@tY" text-anchor="middle" alignment-baseline="central">@s.Text</text>
-                </g>
-            </g>
+            @Html.Partial("SectionViews/SectionView", new ViewDataDictionary { { "section", s }, { "badgeStyle", style } })
         }
         <path d="@badge.BadgePath" fill="url(#badge-gradient-id)"/>
     </g>

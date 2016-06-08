@@ -3,6 +3,7 @@
     public enum SectionType
     {
         Text,
+        Icon,
         //Languages:
         ActionScript,
         C,

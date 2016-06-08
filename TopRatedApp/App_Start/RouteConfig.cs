@@ -13,6 +13,8 @@ namespace TopRatedApp
             routes.MapRoute("Badges/LanguageBadge", "Badges/LanguageBadge", new { controller = "Badges", action = "GetLanguageBadge" });
             routes.MapRoute("Badges/TopRatedBadge", "Badges/TopRatedBadge", new { controller = "Badges", action = "GetTopRatedBadge" });
             routes.MapRoute("Badges/SimpleLanguageBadge", "Badges/SimpleLanguageBadge", new { controller = "Badges", action = "GetSimpleLanguageBadge" });
+            //Logos:
+            routes.MapRoute("Logos/MainLogo", "Logos/MainLogo", new { controller = "Logos", action = "GetMainLogo" });
             //Site pages:
             routes.RouteSitePage("Badges");
             routes.RouteSitePage("Statistics");
@@ -21,6 +23,7 @@ namespace TopRatedApp
             routes.RouteSitePage("About");
             routes.RouteSitePage("Contact");
             routes.RouteSiteIndexPage();
+
         }
     }
 }

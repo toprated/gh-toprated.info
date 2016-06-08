@@ -1,0 +1,42 @@
+﻿@using System.Diagnostics
+@using System.Globalization
+@using TopRatedApp.Interfaces
+
+@{
+    Layout = null;
+    ViewBag.Title = "SectionView";
+
+    var s = ViewData["section"] as ISection;
+    Debug.Assert(s != null, "s != null");
+
+    var style = ViewData["badgeStyle"] as IBadgeStyle;
+    Debug.Assert(style != null, "style != null");
+
+    var shR = style.ShadowRight;
+    var shB = style.ShadowRight;
+
+    var fs = s.SectionStyle.FontStyle;
+    var fam = fs.FontFamily;
+    var fsz = fs.FontSize;
+    var fcl = fs.FontColor;
+    var fsh = fs.FontShadowColor;
+    var bcg = s.SectionStyle.BackgroundColor;
+
+    var tsX = (s.X + shR).ToString("G", CultureInfo.InvariantCulture);
+    var tsY = (s.Y + shB).ToString("G", CultureInfo.InvariantCulture);
+    var tX = (s.X).ToString("G", CultureInfo.InvariantCulture);
+    var tY = (s.Y).ToString("G", CultureInfo.InvariantCulture);
+}
+
+<g id="section-group">
+    <path d="@s.Path" fill="@bcg"/>
+    <g id="section-text-group">
+        <text font-family="@fam" font-size="@fsz" fill="@fsh" fill-opacity="0.8" font-weight="bold"
+              x="@(tsX)" y="@(tsY)" text-anchor="middle" alignment-baseline="central">
+            @s.Text</text>
+        <text font-family="@fam" font-size="@fsz" fill="@fcl" font-weight="bold"
+              x="@tX" y="@tY" text-anchor="middle" alignment-baseline="central">
+            @s.Text</text>
+    </g>
+</g>
+
