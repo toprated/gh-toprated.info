@@ -1,4 +1,5 @@
-﻿using TopRatedApp.Enums;
+﻿using System;
+using TopRatedApp.Enums;
 using TopRatedApp.Interfaces;
 
 namespace TopRatedApp.Common.Badges
@@ -7,13 +8,14 @@ namespace TopRatedApp.Common.Badges
     {
         private void AddIconSection(bool icon, ISectionStyle style)
         {
-            if (icon)
-            {
-                AddSection(new Section(SectionType.Icon, style, w: 22, h: 20));
-            }
+            if (!icon) return;
+
+            var height = Convert.ToInt32(BadgeStyle.DefaultFontStyle.GetTextSize("test").Height) + BadgeGeometry.Padding.Top + BadgeGeometry.Padding.Bottom;
+            var width = height + BadgeGeometry.Padding.Borders;
+            AddSection(new Section(SectionType.Icon, style, w: width, h: height));
         }
 
-        public TopRatedBadge(string percent, ILanguage language, string theme, string size, bool icon) : base(theme)
+        public TopRatedBadge(IFontStyle textFontStyle, string percent, ILanguage language, string theme, string size, bool icon) : base(textFontStyle, theme)
         {
             var topRatedSectionStyle = DefaultTextSectionStyle;
             topRatedSectionStyle.BackgroundColor = Color.TopRated;

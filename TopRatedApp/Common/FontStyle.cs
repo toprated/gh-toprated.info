@@ -7,6 +7,8 @@ namespace TopRatedApp.Common
     public class FontStyle : IFontStyle
     {
         private const string DefaultFontFamily = "DejaVu Sans,Verdana,Geneva,sans-serif";
+        private const string DefaultFontWeight = "normal";
+        private const int DefaultFontSize = 11;
         public string FontFamily { get; set; }
         public string FontWeight { get; set; }
         public int FontSize { get; set; }
@@ -25,19 +27,19 @@ namespace TopRatedApp.Common
         public FontStyle(string badgeTheme)
         {
             FontFamily = DefaultFontFamily;
-            FontSize = 11;
+            FontSize = DefaultFontSize;
             FontColor = ColorHelper.GetFontColor(badgeTheme);
             FontShadowColor = ColorHelper.GetFontShadowColor(badgeTheme);
             FontWeight = "normal";
         }
-
-        public FontStyle(int fontSize, string fontWeight, string badgeTheme)
+        
+        public FontStyle(string badgeTheme, int fontSize = 0, string fontWeight = "", string fontFamily = "")
         {
-            FontFamily = DefaultFontFamily;
-            FontSize = fontSize;
+            FontFamily = fontFamily.Equals("") ? DefaultFontFamily : fontFamily;
+            FontSize = fontSize.Equals(0) ? DefaultFontSize : fontSize;
             FontColor = ColorHelper.GetFontColor(badgeTheme);
             FontShadowColor = ColorHelper.GetFontShadowColor(badgeTheme);
-            FontWeight = fontWeight;
+            FontWeight = fontWeight.Equals("") ? DefaultFontWeight : fontWeight;
         }
 
         public SizeF GetTextSize(string text)

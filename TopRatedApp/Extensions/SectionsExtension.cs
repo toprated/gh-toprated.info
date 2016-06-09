@@ -48,12 +48,10 @@ namespace TopRatedApp.Extensions
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
+
                 var h = pTp + textHeight + pBt;
                 var y = pTp  + textHeight / 2;
                 var sectionPath = PathHelper.GetSectionPath(sectionPosition, badgeWidth, 0, w, h, r);
-
-                //Debug.WriteLine($"tw: {textWidth}, pBr: {pBr}, pMd: {pMd}, pTp: {pTp}, pBt: {pBt}, " +
-                //                $"i: {i}, c: {count}, x: {x}, y: {y}, w: {w}, h: {h}, bW: {badgeWidth}, bH: {badgeHeight}");
 
                 sections[i].H = h;
                 sections[i].W = w;                 

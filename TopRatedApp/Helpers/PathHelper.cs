@@ -32,7 +32,7 @@ namespace TopRatedApp.Helpers
         {
             switch (position)
             {
-                case SectionPosition.Left:           return GetRoundedRectPath(x, y, w + 1, h, r, 0, 0, r);
+                case SectionPosition.Left:           return GetRoundedRectPath(x, y, w + 2, h, r, 0, 0, r);
                 case SectionPosition.Middle:         return GetRoundedRectPath(x, y, w + 1, h, 0, 0, 0, 0);
                 case SectionPosition.Right:          return GetRoundedRectPath(x, y, w, h, 0, r, r, 0);
                 case SectionPosition.OneSectionOnly: return GetSimpleRoundedRectPath(x, y, w, h, r);

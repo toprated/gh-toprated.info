@@ -37,14 +37,13 @@ namespace TopRatedApp.Controllers
             var size = req.QueryString["topRatedBadgeSize"] ?? "medium";
             var icon = bool.Parse(req.QueryString["icon"] ?? "true");
 
-
-            var fontWeight = req.QueryString["fontWeight"] ?? "normal";
-            var fontSize = int.Parse(req.QueryString["fontSize"] ?? "11");
-
-
-
+            var fontWeight = req.QueryString["fontWeight"] ?? "";
+            var fontSize = int.Parse(req.QueryString["fontSize"] ?? "0");
+            var fontFamily = req.QueryString["fontFamily"] ?? "";
+            var fontStyle = new FontStyle(theme, fontSize, fontWeight, fontFamily);
+            
             var repoData = await GithubApiHelper.GetRepoData(user, repo);
-            var badge = new TopRatedBadge("0.05%", repoData.Lang, theme, size, icon);
+            var badge = new TopRatedBadge(fontStyle, "0.05%", repoData.Lang, theme, size, icon);
             var viewModel = new TopRatedBadgeViewModel(badge);
 
             return View("TopRatedBadge", viewModel);
