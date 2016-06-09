@@ -15,7 +15,7 @@ namespace TopRatedApp.Common.Badges
 
         public TopRatedBadge(string percent, ILanguage language, string theme, string size, bool icon) : base(theme)
         {
-            var topRatedSectionStyle = CommonTextStyle;
+            var topRatedSectionStyle = DefaultTextSectionStyle;
             topRatedSectionStyle.BackgroundColor = Color.TopRated;
 
             switch (size)
@@ -25,18 +25,18 @@ namespace TopRatedApp.Common.Badges
                     AddSection(new Section($"{language.Name} top {percent}", SectionType.Text, topRatedSectionStyle));
                     break;
                 case "medium":
-                    AddIconSection(icon, CommonTextStyle);
-                    AddSection(new Section("toprated", SectionType.Text, CommonTextStyle));
+                    AddIconSection(icon, DefaultTextSectionStyle);
+                    AddSection(new Section("toprated", SectionType.Text, DefaultTextSectionStyle));
                     AddSection(new Section($"{language.Name} top {percent}", SectionType.Text, topRatedSectionStyle));
                     break;
                 case "big":
-                    AddIconSection(icon, CommonTextStyle);
-                    AddSection(new Section("toprated repository", SectionType.Text, CommonTextStyle));
+                    AddIconSection(icon, DefaultTextSectionStyle);
+                    AddSection(new Section("toprated repository", SectionType.Text, DefaultTextSectionStyle));
                     AddSection(new Section($"{language.Name} top {percent} all over GitHub", SectionType.Text, topRatedSectionStyle));
                     break;
                 default:
-                    AddIconSection(icon, CommonTextStyle);
-                    AddSection(new Section("toprated", SectionType.Text, CommonTextStyle));
+                    AddIconSection(icon, DefaultTextSectionStyle);
+                    AddSection(new Section("toprated", SectionType.Text, DefaultTextSectionStyle));
                     AddSection(new Section($"{language.Name} top {percent}", SectionType.Text, topRatedSectionStyle));
                     break;
             }

@@ -2,12 +2,9 @@
 {
     public interface IBadgeStyle
     {
-        ISectionStyle CommonTextStyle { get; set; }
-        int PaddingBorders { get; set; }
-        int PaddingMiddle { get; set; }
-        int PaddingTop { get; set; }
-        int PaddingBottom { get; set; }
-        int Radius { get; set; }
+        IFontStyle DefaultFontStyle { get; set; }
+        ISectionStyle DefaultTextSectionStyle { get; set; }
+        IBadgeGeometry BadgeGeometry { get; set; }
         double ShadowRight { get; set; }
         double ShadowBottom { get; set; }
     }

@@ -8,13 +8,22 @@ namespace TopRatedApp.Common.Badges
 {
     public class BadgeBase : IBadgeBase
     {
-        public BadgeBase(string theme = "dark")
+        private readonly IFontStyle _defaultFontStyle;
+
+        public BadgeBase(string theme)
         {
             Theme = theme;
-            _sections = new Section[] {};
+            _sections = new Section[] { };
         }
 
-        public BadgeBase(Section[] sections, string theme = "dark")
+        public BadgeBase(IFontStyle fs, string theme)
+        {
+            _defaultFontStyle = fs;
+            Theme = theme;
+            _sections = new Section[] { };
+        }
+
+        public BadgeBase(Section[] sections, string theme)
         {
             Theme = theme;
             _sections = sections;
@@ -22,30 +31,31 @@ namespace TopRatedApp.Common.Badges
 
         private Section[] _sections;
 
-        public Section[] Sections => _sections.GetFullSections(Style);
+        public Section[] Sections => _sections.GetFullSections(BadgeStyle);
         public double Width => Sections.Sum(s => s.W);
         public double Height => Sections.Max(s => s.H);
-        public string BadgePath => PathHelper.GetSimpleRoundedRectPath(0, 0, Width, Height, Style.Radius);
+
+        public IBadgeGeometry BadgeGeometry =>
+            new BadgeGeometry(
+                new BadgePadding(2, 1, 1, 1), 3);
+
+        public string BadgePath => PathHelper.GetSimpleRoundedRectPath(0, 0, Width, Height, BadgeStyle.BadgeGeometry.Radius);
 
         public string Theme { get; }
-        public IFontStyle FontStyle => 
-            new FontStyle(
-                "DejaVu Sans,Verdana,Geneva,sans-serif", 
-                11, 
-                ColorHelper.GetFontColor(Theme),
-                ColorHelper.GetFontShadowColor(Theme));
-        public ISectionStyle CommonTextStyle =>
+
+        public IFontStyle DefaultFontStyle => _defaultFontStyle
+                                              ?? new FontStyle(Theme);
+
+        public ISectionStyle DefaultTextSectionStyle =>
             new SectionStyle(
-                FontStyle,
+                DefaultFontStyle,
                 ColorHelper.GetBackgroundColor(Theme));
-        public IBadgeStyle Style => 
+        
+        public IBadgeStyle BadgeStyle => 
             new BadgeStyle(
-                CommonTextStyle, 
-                paddingBorders: 2, 
-                paddingMiddle: 1, 
-                paddingTop: 1, 
-                paddingBottom: 1, 
-                radius: 3,
+                DefaultFontStyle,
+                DefaultTextSectionStyle,
+                BadgeGeometry,
                 shadowRight: 1, shadowBottom: 1);
 
         public void SetSections(Section[] sections)

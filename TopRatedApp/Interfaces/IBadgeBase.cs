@@ -8,9 +8,10 @@ namespace TopRatedApp.Interfaces
         double Height { get; }
         Section[] Sections { get; }
         string Theme { get; }
-        IFontStyle FontStyle { get; }
-        ISectionStyle CommonTextStyle { get; }
-        IBadgeStyle Style { get; }
+        IFontStyle DefaultFontStyle { get; }
+        ISectionStyle DefaultTextSectionStyle { get; }
+        IBadgeStyle BadgeStyle { get; }
+        IBadgeGeometry BadgeGeometry { get; }
         void SetSections(Section[] sections);
     }
 }

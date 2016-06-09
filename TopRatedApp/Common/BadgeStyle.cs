@@ -4,24 +4,18 @@ namespace TopRatedApp.Common
 {
     public class BadgeStyle : IBadgeStyle
     {
-        public ISectionStyle CommonTextStyle { get; set; }
-        public int PaddingBorders { get; set; }
-        public int PaddingMiddle { get; set; }
-        public int PaddingTop { get; set; }
-        public int PaddingBottom { get; set; }
-        public int Radius { get; set; }
+        public IFontStyle DefaultFontStyle { get; set; }
+        public ISectionStyle DefaultTextSectionStyle { get; set; }
+        public IBadgeGeometry BadgeGeometry { get; set; }
         public double ShadowRight { get; set; }
         public double ShadowBottom { get; set; }
 
-        public BadgeStyle(ISectionStyle commonTextStyle, int paddingBorders, int paddingMiddle, int paddingTop, int paddingBottom, int radius,
+        public BadgeStyle(IFontStyle defaultFontStyle, ISectionStyle defaultTextSectionStyle, IBadgeGeometry geometry,
             double shadowRight, double shadowBottom)
         {
-            CommonTextStyle = commonTextStyle;
-            PaddingBorders = paddingBorders;
-            PaddingMiddle = paddingMiddle;
-            PaddingTop = paddingTop;
-            PaddingBottom = paddingBottom;
-            Radius = radius;
+            DefaultFontStyle = defaultFontStyle;
+            DefaultTextSectionStyle = defaultTextSectionStyle;
+            BadgeGeometry = geometry;
             ShadowRight = shadowRight;
             ShadowBottom = shadowBottom;
         }

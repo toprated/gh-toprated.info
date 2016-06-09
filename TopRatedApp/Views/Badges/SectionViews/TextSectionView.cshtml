@@ -20,6 +20,7 @@
     var fsz = fs.FontSize;
     var fcl = fs.FontColor;
     var fsh = fs.FontShadowColor;
+    var fw = fs.FontWeight;
     var bcg = s.SectionStyle.BackgroundColor;
 
     var tsX = (s.X + shR).ToString("G", CultureInfo.InvariantCulture);
@@ -31,10 +32,10 @@
 <g id="section-group">
     <path d="@s.Path" fill="@bcg"/>
     <g id="section-text-group">
-        <text font-family="@fam" font-size="@fsz" fill="@fsh" fill-opacity="0.8" font-weight="bold"
+        <text font-family="@fam" font-size="@fsz" fill="@fsh" fill-opacity="0.8" font-weight="@fw"
               x="@(tsX)" y="@(tsY)" text-anchor="middle" alignment-baseline="central">
             @s.Text</text>
-        <text font-family="@fam" font-size="@fsz" fill="@fcl" font-weight="bold"
+        <text font-family="@fam" font-size="@fsz" fill="@fcl" font-weight="@fw"
               x="@tX" y="@tY" text-anchor="middle" alignment-baseline="central">
             @s.Text</text>
     </g>

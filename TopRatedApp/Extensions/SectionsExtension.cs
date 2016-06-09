@@ -11,11 +11,11 @@ namespace TopRatedApp.Extensions
         public static Section[] GetFullSections(this Section[] sections, IBadgeStyle badgeStyle)
         {
             var count = sections.Length;
-            var pBr = badgeStyle.PaddingBorders;
-            var pMd = badgeStyle.PaddingMiddle;
-            var pTp = badgeStyle.PaddingTop;
-            var pBt = badgeStyle.PaddingBottom;
-            var r = badgeStyle.Radius;
+            var pBr = badgeStyle.BadgeGeometry.Padding.Borders;
+            var pMd = badgeStyle.BadgeGeometry.Padding.Middle;
+            var pTp = badgeStyle.BadgeGeometry.Padding.Top;
+            var pBt = badgeStyle.BadgeGeometry.Padding.Bottom;
+            var r = badgeStyle.BadgeGeometry.Radius;
             var badgeWidth = 0.0;
             var badgeHeight = 0.0;
             for (var i = 0; i < count; i++)

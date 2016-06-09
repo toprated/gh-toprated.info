@@ -39,6 +39,8 @@ namespace TopRatedApp.Controllers
 
 
             var fontWeight = req.QueryString["fontWeight"] ?? "normal";
+            var fontSize = int.Parse(req.QueryString["fontSize"] ?? "11");
+
 
 
             var repoData = await GithubApiHelper.GetRepoData(user, repo);
