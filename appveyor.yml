@@ -1,0 +1,11 @@
+
+  before_build:
+    - nuget restore topratedsite.sln
+
+  build_script: 
+    - msbuild topratedsite.sln /p:Configuration=Release /t:Rebuild
+  
+  test:
+    assemblies:
+      - '**\*Tests.dll'
+      
