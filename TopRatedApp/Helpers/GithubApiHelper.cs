@@ -38,15 +38,6 @@ namespace TopRatedApp.Helpers
             return JObject.Parse(json);
         }
 
-        public static async Task<string> GetLanguageName(string user, string repo)
-        {
-            var url = $"https://api.github.com/repos/{user}/{repo}";
-
-            var jObj = await GetJObject(url);
-
-            return jObj["language"].Value<string>();
-        }
-
         public static async Task<IRepoData> GetRepoData(string user, string repo)
         {
             var url = $"https://api.github.com/repos/{user}/{repo}";
@@ -59,6 +50,18 @@ namespace TopRatedApp.Helpers
             var repoData = new RepoData(id, lang, stars);
 
             return repoData;
+        }
+
+        public static async Task<string> GetTopPercent(IRepoData repoData)
+        {
+            var url =
+                $"https://api.github.com/search/repositories?q=+language:{repoData.Lang.ApiName}&sort=stars&order=desc&page=1&per_page=1";
+
+            var jObj = await GetJObject(url);
+            var total = jObj["total_count"].Value<int>();
+
+            return "";
+
         }
     }
 }
