@@ -1,4 +1,5 @@
 ﻿@using System.Diagnostics
+@using System.Globalization
 @using TopRatedApp.Interfaces
 
 @{
@@ -15,11 +16,14 @@
     var pl = style.BadgeGeometry.Padding.Borders;
     var pt = style.BadgeGeometry.Padding.Top;
 
-    var scale = (s.H - 2*pt)/20;
+    var scale = ((s.H - 2*pt)/20).ToString("G", CultureInfo.InvariantCulture);
+
+    var w = s.W.ToString("G", CultureInfo.InvariantCulture);
+    var h = s.H.ToString("G", CultureInfo.InvariantCulture);
 }
 
 
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="@s.W" height="@s.H" >
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="@w" height="@h" >
     <g id="section-logo-group" >
         <path d="@s.Path" fill="@bcg"/>
         <g id="section-main-group"  transform="scale(@scale)" >

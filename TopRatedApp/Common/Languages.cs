@@ -11,7 +11,7 @@ namespace TopRatedApp.Common
             new Language("ActionScript", "ActionScript",  "ActionScript", "#882B0F", Color.White, Color.Black, SectionType.ActionScript),//+
             new Language("C",            "C",             "C",            "#555555", Color.White, Color.Black, SectionType.C           ),//+
             new Language("C#",           "csharp",        "C%23",         "#178600", Color.White, Color.Black, SectionType.CSharp      ),//+
-            new Language("C++",          "C++",           "C%2B%2B",      "#f34b7d", Color.White, Color.Black, SectionType.Cpp         ),//+
+            new Language("C++",          "cpp",           "C%2B%2B",      "#f34b7d", Color.White, Color.Black, SectionType.Cpp         ),//+
             new Language("Clojure",      "Clojure",       "Clojure",      "#db5855", Color.White, Color.Black, SectionType.Clojure     ),//+
             new Language("CoffeeScript", "CoffeeScript",  "CoffeeScript", "#244776", Color.White, Color.Black, SectionType.CoffeeScript),//+
             new Language("CSS",          "CSS",           "CSS",          "#563d7c", Color.White, Color.Black, SectionType.Css         ),//+
@@ -35,7 +35,7 @@ namespace TopRatedApp.Common
             new Language("TypeScript",   "TypeScript",    "TypeScript",   "#2b7489", Color.White, Color.Black, SectionType.Viml        ),//+
             new Language("VimL",         "VimL",          "VimL",         "#199f4b", Color.White, Color.Black, SectionType.TypeScript  ),//+
 
-            new Language("Unknown",      "", "Unknown",   Color.Silver, Color.White, Color.Black, SectionType.Text)//+
+            new Language("Unknown",      "", "Unknown",   Color.Silver, Color.Black, Color.White, SectionType.Text)//+
         };
 
         public static ILanguage UnknownLanguage => All.First(l => l.Name.Equals("Unknown"));
