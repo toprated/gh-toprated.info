@@ -179,6 +179,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Common\BadgeGeometry.cs" />
     <Compile Include="Common\BadgePadding.cs" />
+    <Compile Include="Common\BadgeQueryData.cs" />
     <Compile Include="Common\Badges\BadgeBase.cs" />
     <Compile Include="Common\BadgeStyle.cs" />
     <Compile Include="Common\Badges\LanguageBadge.cs" />
@@ -203,6 +204,7 @@
     <Compile Include="Helpers\ColorHelper.cs" />
     <Compile Include="Helpers\GithubApiHelper.cs" />
     <Compile Include="Helpers\PathHelper.cs" />
+    <Compile Include="Extensions\QueryStringExtensions.cs" />
     <Compile Include="Interfaces\IBadgeBase.cs" />
     <Compile Include="Interfaces\IBadgeGeometry.cs" />
     <Compile Include="Interfaces\IBadgePadding.cs" />

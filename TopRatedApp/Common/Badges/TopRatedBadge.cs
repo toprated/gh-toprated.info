@@ -15,7 +15,7 @@ namespace TopRatedApp.Common.Badges
             AddSection(new Section(SectionType.Icon, style, w: width, h: height));
         }
 
-        public TopRatedBadge(IFontStyle textFontStyle, string percent, ILanguage language, string theme, string size, bool icon) : base(textFontStyle, theme)
+        private void GenerateSections(string percent, ILanguage language, string size, bool icon)
         {
             var topRatedSectionStyle = DefaultTextSectionStyle;
             topRatedSectionStyle.BackgroundColor = Color.TopRated;
@@ -28,21 +28,25 @@ namespace TopRatedApp.Common.Badges
                     break;
                 case "medium":
                     AddIconSection(icon, DefaultTextSectionStyle);
-                    AddSection(new Section("toprated", SectionType.Text, DefaultTextSectionStyle));
+                    AddSection(new Section("top rated", SectionType.Text, DefaultTextSectionStyle));
                     AddSection(new Section($"{language.Name} top {percent}", SectionType.Text, topRatedSectionStyle));
                     break;
                 case "big":
                     AddIconSection(icon, DefaultTextSectionStyle);
-                    AddSection(new Section("toprated repository", SectionType.Text, DefaultTextSectionStyle));
+                    AddSection(new Section("top rated repository", SectionType.Text, DefaultTextSectionStyle));
                     AddSection(new Section($"{language.Name} top {percent} all over GitHub", SectionType.Text, topRatedSectionStyle));
                     break;
                 default:
                     AddIconSection(icon, DefaultTextSectionStyle);
-                    AddSection(new Section("toprated", SectionType.Text, DefaultTextSectionStyle));
+                    AddSection(new Section("top rated", SectionType.Text, DefaultTextSectionStyle));
                     AddSection(new Section($"{language.Name} top {percent}", SectionType.Text, topRatedSectionStyle));
                     break;
             }
+        }
 
+        public TopRatedBadge(BadgeQueryData bqd, string percent, ILanguage language) : base(bqd, language)
+        {
+            GenerateSections(percent, language, bqd.Size, bqd.Icon);
         }
     }
 }

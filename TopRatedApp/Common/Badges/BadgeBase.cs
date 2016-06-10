@@ -9,6 +9,7 @@ namespace TopRatedApp.Common.Badges
     public class BadgeBase : IBadgeBase
     {
         private readonly IFontStyle _defaultFontStyle;
+        private readonly ILanguage _language;
 
         public BadgeBase(string theme)
         {
@@ -16,17 +17,12 @@ namespace TopRatedApp.Common.Badges
             _sections = new Section[] { };
         }
 
-        public BadgeBase(IFontStyle fs, string theme)
+        public BadgeBase(BadgeQueryData d, ILanguage language)
         {
-            _defaultFontStyle = fs;
-            Theme = theme;
+            _language = language;
+            _defaultFontStyle = d.FontStyle;
+            Theme = d.Theme;
             _sections = new Section[] { };
-        }
-
-        public BadgeBase(Section[] sections, string theme)
-        {
-            Theme = theme;
-            _sections = sections;
         }
 
         private Section[] _sections;
@@ -45,6 +41,15 @@ namespace TopRatedApp.Common.Badges
 
         public IFontStyle DefaultFontStyle => _defaultFontStyle
                                               ?? new FontStyle(Theme);
+
+        public ISectionStyle LangSectionStyle => new SectionStyle(
+            new FontStyle(
+                DefaultFontStyle.FontFamily,
+                DefaultFontStyle.FontSize,
+                DefaultFontStyle.FontWeight,
+                _language.TextColor,
+                _language.TextShadowColor),
+            _language.Color);
 
         public ISectionStyle DefaultTextSectionStyle =>
             new SectionStyle(

@@ -15,11 +15,10 @@ namespace TopRatedApp.Controllers
             Response.ContentType = "image/svg+xml";
 
             var req = System.Web.HttpContext.Current.Request;
-            var user = req.QueryString["user"] ?? "user";
-            var repo = req.QueryString["repo"] ?? "repo";
-            var theme = req.QueryString["theme"] ?? "dark";
-            var languageName = await GithubApiHelper.GetLanguageName(user, repo);
-            var badge = new LanguageBadge(Languages.GetLangByName(languageName), theme);
+            var bqd = new BadgeQueryData(req);
+            var repoData = await GithubApiHelper.GetRepoData(bqd.User, bqd.Repo);
+
+            var badge = new LanguageBadge(bqd, repoData.Lang);
             var viewModel = new LanguageBadgeViewModel(badge);
 
             return View("LanguageBadge", viewModel);
@@ -31,19 +30,12 @@ namespace TopRatedApp.Controllers
             Response.ContentType = "image/svg+xml";
 
             var req = System.Web.HttpContext.Current.Request;
-            var user = req.QueryString["user"] ?? "user";
-            var repo = req.QueryString["repo"] ?? "repo";
-            var theme = req.QueryString["theme"] ?? "dark";
-            var size = req.QueryString["topRatedBadgeSize"] ?? "medium";
-            var icon = bool.Parse(req.QueryString["icon"] ?? "true");
 
-            var fontWeight = req.QueryString["fontWeight"] ?? "";
-            var fontSize = int.Parse(req.QueryString["fontSize"] ?? "0");
-            var fontFamily = req.QueryString["fontFamily"] ?? "";
-            var fontStyle = new FontStyle(theme, fontSize, fontWeight, fontFamily);
+            var bqd = new BadgeQueryData(req);
             
-            var repoData = await GithubApiHelper.GetRepoData(user, repo);
-            var badge = new TopRatedBadge(fontStyle, "0.05%", repoData.Lang, theme, size, icon);
+            var repoData = await GithubApiHelper.GetRepoData(bqd.User, bqd.Repo);
+
+            var badge = new TopRatedBadge(bqd, "0.05%", repoData.Lang);
             var viewModel = new TopRatedBadgeViewModel(badge);
 
             return View("TopRatedBadge", viewModel);
@@ -56,8 +48,8 @@ namespace TopRatedApp.Controllers
 
             var req = System.Web.HttpContext.Current.Request;
             var lang = req.QueryString["lang"] ?? "JavaScript";
-            var theme = req.QueryString["theme"] ?? "dark";
-            var badge = new LanguageBadge(Languages.GetLangByName(lang), theme);
+            var bqd = new BadgeQueryData(req);
+            var badge = new LanguageBadge(bqd, Languages.GetLangByName(lang));
             var viewModel = new SimpleLanguageBadgeViewModel(badge);
 
             return View("SimpleLanguageBadge", viewModel);
