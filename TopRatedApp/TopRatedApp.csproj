@@ -205,6 +205,7 @@
     <Compile Include="Helpers\GithubApiHelper.cs" />
     <Compile Include="Helpers\PathHelper.cs" />
     <Compile Include="Extensions\QueryStringExtensions.cs" />
+    <Compile Include="Interfaces\IBadge.cs" />
     <Compile Include="Interfaces\IBadgeBase.cs" />
     <Compile Include="Interfaces\IBadgeGeometry.cs" />
     <Compile Include="Interfaces\IBadgePadding.cs" />

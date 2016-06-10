@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using TopRatedApp.Enums;
 using TopRatedApp.Extensions;
 using TopRatedApp.Helpers;
 using TopRatedApp.Interfaces;
@@ -10,23 +11,18 @@ namespace TopRatedApp.Common.Badges
     {
         private readonly IFontStyle _defaultFontStyle;
         private readonly ILanguage _language;
+        private Section[] _sections;
 
-        public BadgeBase(string theme)
-        {
-            Theme = theme;
-            _sections = new Section[] { };
-        }
+        public BadgeQueryData BadgeQueryData { get; }
 
         public BadgeBase(BadgeQueryData d, ILanguage language)
         {
+            BadgeQueryData = d;
             _language = language;
             _defaultFontStyle = d.FontStyle;
-            Theme = d.Theme;
             _sections = new Section[] { };
         }
-
-        private Section[] _sections;
-
+        
         public Section[] Sections => _sections.GetFullSections(BadgeStyle);
         public double Width => Sections.Sum(s => s.W);
         public double Height => Sections.Max(s => s.H);
@@ -36,11 +32,9 @@ namespace TopRatedApp.Common.Badges
                 new BadgePadding(2, 1, 1, 1), 3);
 
         public string BadgePath => PathHelper.GetSimpleRoundedRectPath(0, 0, Width, Height, BadgeStyle.BadgeGeometry.Radius);
-
-        public string Theme { get; }
-
+        
         public IFontStyle DefaultFontStyle => _defaultFontStyle
-                                              ?? new FontStyle(Theme);
+                                              ?? new FontStyle(BadgeQueryData.Theme);
 
         public ISectionStyle LangSectionStyle => new SectionStyle(
             new FontStyle(
@@ -54,7 +48,7 @@ namespace TopRatedApp.Common.Badges
         public ISectionStyle DefaultTextSectionStyle =>
             new SectionStyle(
                 DefaultFontStyle,
-                ColorHelper.GetBackgroundColor(Theme));
+                ColorHelper.GetBackgroundColor(BadgeQueryData.Theme));
         
         public IBadgeStyle BadgeStyle => 
             new BadgeStyle(
@@ -62,6 +56,15 @@ namespace TopRatedApp.Common.Badges
                 DefaultTextSectionStyle,
                 BadgeGeometry,
                 shadowRight: 1, shadowBottom: 1);
+
+        public void AddIconSection(ISectionStyle style)
+        {
+            if (!BadgeQueryData.Icon) return;
+
+            var height = Convert.ToInt32(BadgeStyle.DefaultFontStyle.GetTextSize("test").Height) + BadgeGeometry.Padding.Top + BadgeGeometry.Padding.Bottom;
+            var width = height + BadgeGeometry.Padding.Borders;
+            AddSection(new Section(SectionType.Icon, style, w: width, h: height));
+        }
 
         public void SetSections(Section[] sections)
         {

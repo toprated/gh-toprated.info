@@ -3,17 +3,37 @@ using TopRatedApp.Interfaces;
 
 namespace TopRatedApp.Common.Badges
 {
-    public class LanguageBadge : BadgeBase
+    public class LanguageBadge : BadgeBase, IBadge
     {
-        private void GenerateSections(ILanguage language)
+        public void GenerateSections(ILanguage language, BadgeQueryData bqd)
         {
-            AddSection(new Section("language", SectionType.Text, DefaultTextSectionStyle));
-            AddSection(new Section(language.Name, language.SectionType, LangSectionStyle));
+            switch (bqd.Size)
+            {
+                case "small":
+                    AddIconSection(DefaultTextSectionStyle);
+                    AddSection(new Section(language.Name, language.SectionType, LangSectionStyle));
+                    break;
+                case "medium":
+                    AddIconSection(DefaultTextSectionStyle);
+                    AddSection(new Section("language", SectionType.Text, DefaultTextSectionStyle));
+                    AddSection(new Section(language.Name, language.SectionType, LangSectionStyle));
+                    break;
+                case "big":
+                    AddIconSection(DefaultTextSectionStyle);
+                    AddSection(new Section("programming language", SectionType.Text, DefaultTextSectionStyle));
+                    AddSection(new Section(language.Name, language.SectionType, LangSectionStyle));
+                    break;
+                default:
+                    AddIconSection(DefaultTextSectionStyle);
+                    AddSection(new Section("language", SectionType.Text, DefaultTextSectionStyle));
+                    AddSection(new Section(language.Name, language.SectionType, LangSectionStyle));
+                    break;
+            }
         }
 
         public LanguageBadge(BadgeQueryData bqd, ILanguage language) : base(bqd, language)
         {
-            GenerateSections(language);
+            GenerateSections(language, bqd);
         }
     }
 }

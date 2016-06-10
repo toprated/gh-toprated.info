@@ -7,7 +7,7 @@ namespace TopRatedApp.Interfaces
         double Width { get; }
         double Height { get; }
         Section[] Sections { get; }
-        string Theme { get; }
+        BadgeQueryData BadgeQueryData { get; }
         IFontStyle DefaultFontStyle { get; }
         ISectionStyle DefaultTextSectionStyle { get; }
         IBadgeStyle BadgeStyle { get; }
