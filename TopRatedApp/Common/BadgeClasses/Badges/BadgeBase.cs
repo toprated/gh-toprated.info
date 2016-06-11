@@ -5,7 +5,7 @@ using TopRatedApp.Extensions;
 using TopRatedApp.Helpers;
 using TopRatedApp.Interfaces;
 
-namespace TopRatedApp.Common.Badges
+namespace TopRatedApp.Common.BadgeClasses.Badges
 {
     public class BadgeBase : IBadgeBase
     {

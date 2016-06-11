@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using System.Web.Mvc;
-using TopRatedApp.Common;
-using TopRatedApp.Common.Badges;
+using TopRatedApp.Common.BadgeClasses;
+using TopRatedApp.Common.BadgeClasses.Badges;
 using TopRatedApp.Helpers;
 using TopRatedApp.Models;
 

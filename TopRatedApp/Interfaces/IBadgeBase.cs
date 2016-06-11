@@ -1,4 +1,5 @@
 ﻿using TopRatedApp.Common;
+using TopRatedApp.Common.BadgeClasses;
 
 namespace TopRatedApp.Interfaces
 {

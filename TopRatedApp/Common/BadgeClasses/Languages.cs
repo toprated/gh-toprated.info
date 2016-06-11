@@ -3,7 +3,7 @@ using System.Linq;
 using TopRatedApp.Enums;
 using TopRatedApp.Interfaces;
 
-namespace TopRatedApp.Common
+namespace TopRatedApp.Common.BadgeClasses
 {
     public class Languages
     {

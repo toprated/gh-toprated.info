@@ -2,7 +2,7 @@
 using TopRatedApp.Helpers;
 using TopRatedApp.Interfaces;
 
-namespace TopRatedApp.Common
+namespace TopRatedApp.Common.BadgeClasses
 {
     public class FontStyle : IFontStyle
     {

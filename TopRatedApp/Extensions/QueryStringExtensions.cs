@@ -1,5 +1,5 @@
 ﻿using System.Collections.Specialized;
-using TopRatedApp.Common;
+using TopRatedApp.Common.BadgeClasses;
 using TopRatedApp.Interfaces;
 
 namespace TopRatedApp.Extensions

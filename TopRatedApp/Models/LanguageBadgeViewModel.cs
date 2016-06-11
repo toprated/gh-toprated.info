@@ -1,4 +1,4 @@
-﻿using TopRatedApp.Common.Badges;
+﻿using TopRatedApp.Common.BadgeClasses.Badges;
 
 namespace TopRatedApp.Models
 {

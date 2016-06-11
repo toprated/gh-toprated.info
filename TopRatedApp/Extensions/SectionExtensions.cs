@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using TopRatedApp.Common;
+using TopRatedApp.Common.BadgeClasses;
 using TopRatedApp.Enums;
 
 namespace TopRatedApp.Extensions

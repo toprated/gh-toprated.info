@@ -4,6 +4,7 @@ using System.Net;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 using TopRatedApp.Common;
+using TopRatedApp.Common.BadgeClasses;
 using TopRatedApp.Interfaces;
 
 namespace TopRatedApp.Helpers

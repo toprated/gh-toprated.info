@@ -2,7 +2,7 @@
 using TopRatedApp.Extensions;
 using TopRatedApp.Interfaces;
 
-namespace TopRatedApp.Common
+namespace TopRatedApp.Common.BadgeClasses
 {
     public class BadgeQueryData
     {

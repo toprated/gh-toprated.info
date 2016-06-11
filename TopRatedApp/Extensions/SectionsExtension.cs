@@ -1,5 +1,6 @@
 ﻿using System;
 using TopRatedApp.Common;
+using TopRatedApp.Common.BadgeClasses;
 using TopRatedApp.Enums;
 using TopRatedApp.Helpers;
 using TopRatedApp.Interfaces;

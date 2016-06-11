@@ -1,4 +1,4 @@
-﻿namespace TopRatedApp.Common
+﻿namespace TopRatedApp.Common.BadgeClasses
 {
     public class Color
     {

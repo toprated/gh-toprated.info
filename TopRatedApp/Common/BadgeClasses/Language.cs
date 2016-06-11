@@ -1,7 +1,7 @@
 ﻿using TopRatedApp.Enums;
 using TopRatedApp.Interfaces;
 
-namespace TopRatedApp.Common
+namespace TopRatedApp.Common.BadgeClasses
 {
     public class Language : ILanguage
     {
