@@ -1,6 +1,6 @@
 ﻿using TopRatedApp.Interfaces;
 
-namespace TopRatedApp.Common.BadgeClasses
+namespace TopRatedApp.Common
 {
     public class RepoData : IRepoData
     {

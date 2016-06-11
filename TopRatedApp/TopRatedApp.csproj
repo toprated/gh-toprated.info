@@ -190,9 +190,11 @@
     <Compile Include="Common\BadgeClasses\FontStyle.cs" />
     <Compile Include="Common\BadgeClasses\Language.cs" />
     <Compile Include="Common\BadgeClasses\Languages.cs" />
-    <Compile Include="Common\BadgeClasses\RepoData.cs" />
+    <Compile Include="Common\RepoData.cs" />
     <Compile Include="Common\BadgeClasses\Section.cs" />
     <Compile Include="Common\BadgeClasses\SectionStyle.cs" />
+    <Compile Include="Common\TopRatedCategories\Categories.cs" />
+    <Compile Include="Common\TopRatedCategories\Category.cs" />
     <Compile Include="Controllers\LogosController.cs" />
     <Compile Include="Controllers\SiteController.cs" />
     <Compile Include="Enums\SectionPosition.cs" />
@@ -212,6 +214,7 @@
     <Compile Include="Interfaces\IBadgeGeometry.cs" />
     <Compile Include="Interfaces\IBadgePadding.cs" />
     <Compile Include="Interfaces\IBadgeStyle.cs" />
+    <Compile Include="Interfaces\ICategory.cs" />
     <Compile Include="Interfaces\IFontStyle.cs" />
     <Compile Include="Interfaces\ILanguage.cs" />
     <Compile Include="Interfaces\IRepoData.cs" />

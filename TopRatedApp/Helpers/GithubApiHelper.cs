@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net;
 using System.Threading.Tasks;
@@ -53,15 +54,16 @@ namespace TopRatedApp.Helpers
             return repoData;
         }
 
-        public static async Task<string> GetTopPercent(IRepoData repoData)
+        public static async Task<List<ICategory>> GetTopPercent(IRepoData repoData)
         {
+            var r = new List<ICategory>();
             var url =
                 $"https://api.github.com/search/repositories?q=+language:{repoData.Lang.ApiName}&sort=stars&order=desc&page=1&per_page=1";
 
             var jObj = await GetJObject(url);
             var total = jObj["total_count"].Value<int>();
 
-            return "";
+            return r;
 
         }
     }

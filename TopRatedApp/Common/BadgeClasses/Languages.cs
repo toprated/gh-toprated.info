@@ -5,7 +5,7 @@ using TopRatedApp.Interfaces;
 
 namespace TopRatedApp.Common.BadgeClasses
 {
-    public class Languages
+    public static class Languages
     {
         public static ILanguage[] All = {
             new Language("ActionScript", "ActionScript",  "ActionScript", "#882B0F", Color.White, Color.Black, SectionType.ActionScript),//+
