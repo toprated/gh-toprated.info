@@ -10,7 +10,7 @@ namespace TopRatedApp.Common.TopRatedCategories
         public int From { get; set; }
         public int To { get; set; }
 
-        public Category(double percentage, int starsFrom = 0, int starsTo = 0)
+        public Category(double percentage, int starsFrom, int starsTo = 0)
         {
             Percentage = percentage;
             From = starsFrom;
