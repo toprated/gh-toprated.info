@@ -71,15 +71,43 @@ namespace TopRatedApp.Helpers
         //{
         //}
 
-        public static async Task<List<ICategory>> GetTopCategories(string langApiName)
+        public static async Task<ILangTopRatedData> GetTopCategories(ILanguage lang)
         {
-            var r = new List<ICategory>();
+            var data = new LangTopRatedData();
+            var langApiName = lang.ApiName;
             var jObj = await GetJObject(GetLangSearchApiUrl(langApiName, 1, 1));
             var totalAll = jObj["total_count"].Value<int>();
-            
-            foreach (var d in Categories.CategoriesArray)
+            data.TotalRepos = totalAll;
+
+            //setting categories with % and count
+            foreach (var d in Categories.Array)
             {
-                var categoryTotalCount = (int)(totalAll * d / 100);
+                data.Categories.Add(
+                    new Category(
+                        d, 
+                        (int) (totalAll*d/100))
+                    );
+            }
+
+            var count = 0;
+
+            foreach (var category in data.Categories)
+            {
+                if (category.Count < 1000)
+                {
+
+                }
+            }
+
+            while (count < data.Categories.Count)
+            {
+                var reposJObj = await GetJObject(GetLangSearchApiUrl(langApiName, 10, 100));
+                count++;
+            }
+
+            foreach (var c in Categories.Array)
+            {
+                var categoryTotalCount = (int)(totalAll * 0 / 100);
                 var pageNumber = categoryTotalCount / 100;
                 var pagePosition = categoryTotalCount % 100;
                 var reposJObj = await GetJObject(GetLangSearchApiUrl(langApiName, pageNumber, 100));
@@ -89,13 +117,13 @@ namespace TopRatedApp.Helpers
                 foreach (var jRepo in jRepos)
                 {
                     j++;
-                    if (j!=pagePosition) continue;
+                    if (j != pagePosition) continue;
                     var stars = int.Parse(jRepo.GetValue("stargazers_count").ToString());
-                    r.Add(new Category(d, stars, 0));
+                    data.Categories.Add(new Category(0, stars, 0));
                 }
             }
 
-            return r;
+            return data;
 
         }
     }

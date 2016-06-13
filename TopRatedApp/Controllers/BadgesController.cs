@@ -33,8 +33,8 @@ namespace TopRatedApp.Controllers
             var bqd = new BadgeQueryData(req);
             var repoData = await GithubApiHelper.GetRepoData(bqd.User, bqd.Repo);
 
-            var cats = await GithubApiHelper.GetTopCategories(repoData.Lang.ApiName);
-            foreach (var c in cats)
+            var langTopRatedData = await GithubApiHelper.GetTopCategories(repoData.Lang);
+            foreach (var c in langTopRatedData.Categories)
             {
                 Debug.WriteLine($"cp: {c.PercentageString}, f: {c.From}, t: {c.To}");
             }
