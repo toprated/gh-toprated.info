@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Diagnostics;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using TopRatedApp.Common.BadgeClasses;
 using TopRatedApp.Common.BadgeClasses.Badges;
@@ -17,7 +18,6 @@ namespace TopRatedApp.Controllers
             var req = System.Web.HttpContext.Current.Request;
             var bqd = new BadgeQueryData(req);
             var repoData = await GithubApiHelper.GetRepoData(bqd.User, bqd.Repo);
-
             var badge = new LanguageBadge(bqd, repoData.Lang);
             var viewModel = new LanguageBadgeViewModel(badge);
 
@@ -30,10 +30,14 @@ namespace TopRatedApp.Controllers
             Response.ContentType = "image/svg+xml";
 
             var req = System.Web.HttpContext.Current.Request;
-
             var bqd = new BadgeQueryData(req);
-            
             var repoData = await GithubApiHelper.GetRepoData(bqd.User, bqd.Repo);
+
+            var cats = await GithubApiHelper.GetTopCategories(repoData.Lang.ApiName);
+            foreach (var c in cats)
+            {
+                Debug.WriteLine($"cp: {c.PercentageString}, f: {c.From}, t: {c.To}");
+            }
 
             var badge = new TopRatedBadge(bqd, "0.05%", repoData.Lang);
             var viewModel = new TopRatedBadgeViewModel(badge);

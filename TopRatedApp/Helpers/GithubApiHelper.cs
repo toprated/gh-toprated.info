@@ -58,9 +58,11 @@ namespace TopRatedApp.Helpers
 
         public static string GetLangApiUrl(string lang, int page, int perPage)
         {
-            return
+            var url =
                 $"https://api.github.com/search/repositories?q=+language:{lang}&sort=stars" +
                 $"&order=desc&page={page}&per_page={perPage}";
+            //Debug.WriteLine("url: " + url);
+            return url;
 
         }
 
@@ -79,7 +81,7 @@ namespace TopRatedApp.Helpers
                 var categoryTotalCount = (int)(total * d / 100);
                 var pageNumber = categoryTotalCount / 100;
                 var pagePosition = categoryTotalCount % 100;
-                var reposJObj = await GetJObject(GetLangApiUrl(langApiName, pageNumber, pagePosition));
+                var reposJObj = await GetJObject(GetLangApiUrl(langApiName, pageNumber, 100));
                 var jRepos = reposJObj["items"].Children().ToList().Select(jT => JObject.Parse(jT.ToString()));
                 var j = 0;
 
