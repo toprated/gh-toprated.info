@@ -1,14 +1,14 @@
-﻿@using TopRatedApp.Common
-@using TopRatedApp.Common.BadgeClasses
-
+﻿@using TopRatedApp.Common.BadgeClasses
+@model TopRatedApp.Models.BadgesViewModel
 @{
     ViewBag.Title = "Badges";
     var languages = Languages.All;
     var count = languages.Length;
     var middle = (count % 2 == 0) ? count/2 : (count/2 + 1);
+    var userName = Model.UserName;
 }
 
-<h2>@ViewBag.Title</h2>
+<h2>Hello, @userName! @ViewBag.Title:</h2>
 
 <div class="col-md-6">
     <table class="table">

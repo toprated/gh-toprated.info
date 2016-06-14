@@ -33,7 +33,7 @@ namespace TopRatedApp.Common.BadgeClasses.Badges
                     borders: 2, 
                     left: 3, 
                     right: 2, 
-                    middle: 0, 
+                    middle: 1, 
                     top: 1, 
                     bottom: 1), 
                 radius: 3);
