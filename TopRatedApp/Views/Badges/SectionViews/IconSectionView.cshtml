@@ -13,8 +13,10 @@
     Debug.Assert(style != null, "style != null");
 
     var bcg = s.SectionStyle.BackgroundColor;
-    var pl = style.BadgeGeometry.Padding.Borders;
-    var pt = style.BadgeGeometry.Padding.Top;
+    var pl = style.BadgeGeometry.Padding.BorderLeft;
+    var pt = style.BadgeGeometry.Padding.Top + 1;
+
+    Debug.WriteLine($"pl: {pl}");
 
     var scale = ((s.H - 2*pt)/20).ToString("G", CultureInfo.InvariantCulture);
 
@@ -22,14 +24,13 @@
     var h = s.H.ToString("G", CultureInfo.InvariantCulture);
 }
 
-
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="@w" height="@h" >
     <g id="section-logo-group" >
         <path d="@s.Path" fill="@bcg"/>
         <g id="section-main-group"  transform="scale(@scale)" >
             <circle id="logo-circle" cx="@(pl + 10)" cy="@(pt + 10)" stroke="black" style="stroke-width: 0;" r="10" fill="#FFA500"/>
-            <text fill="@bcg" x="@(pl + 1)" y="@(pt + 14)" id="logo-t-text" style="font-family: Arial; font-size: 16px; font-style: normal;" dy="" dx="">T</text>
-            <text fill="@bcg" x="@(pl + 8)" y="@(pt + 18)" id="logo-r-text" style="font-family: Arial; font-size: 16px; font-style: normal;" dy="" dx="">R</text>
+            <text fill="@bcg" x="@(pl + 1)" y="@(pt + 14)" id="logo-t-text" style="font-family: Arial; font-size: 16px; font-style: normal;">T</text>
+            <text fill="@bcg" x="@(pl + 8)" y="@(pt + 18)" id="logo-r-text" style="font-family: Arial; font-size: 16px; font-style: normal;">R</text>
         </g>
     </g>
 </svg>

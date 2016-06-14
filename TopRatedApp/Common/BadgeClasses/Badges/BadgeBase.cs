@@ -29,7 +29,14 @@ namespace TopRatedApp.Common.BadgeClasses.Badges
 
         public IBadgeGeometry BadgeGeometry =>
             new BadgeGeometry(
-                new BadgePadding(2, 0, 1, 1), 3);
+                new BadgePadding(
+                    borders: 2, 
+                    left: 3, 
+                    right: 2, 
+                    middle: 0, 
+                    top: 1, 
+                    bottom: 1), 
+                radius: 3);
 
         public string BadgePath => PathHelper.GetSimpleRoundedRectPath(0, 0, Width, Height, BadgeStyle.BadgeGeometry.Radius);
         
