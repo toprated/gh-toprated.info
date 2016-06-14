@@ -44,16 +44,23 @@ namespace TopRatedApp.Helpers
 
         public static async Task<IRepoData> GetRepoData(string user, string repo)
         {
-            var url = $"https://api.github.com/repos/{user}/{repo}";
+            try
+            {
+                var url = $"https://api.github.com/repos/{user}/{repo}";
 
-            var jObj = await GetJObject(url);
+                var jObj = await GetJObject(url);
 
-            var lang = Languages.GetLangByName(jObj["language"].Value<string>());
-            var stars = jObj["stargazers_count"].Value<int>();
-            var id = jObj["stargazers_count"].Value<string>();
-            var repoData = new RepoData(id, lang, stars);
+                var lang = Languages.GetLangByName(jObj["language"].Value<string>());
+                var stars = jObj["stargazers_count"].Value<int>();
+                var id = jObj["stargazers_count"].Value<string>();
+                var repoData = new RepoData(id, lang, stars);
 
-            return repoData;
+                return repoData;
+            }
+            catch (Exception)
+            {
+                return new RepoData("0", Languages.UnknownLanguage, 0);
+            }
         }
 
         public static string GetLangSearchApiUrl(string lang, int page, int perPage, int starsMoreThen = 500000)
