@@ -232,7 +232,8 @@ _Pvt_Extensions
 # Paket dependency manager
 .paket/paket.exe
 
-# FAKE - F# Make
-.fake/
+
 TopRatedApp/App_Data/clientData.json
-TopRatedApp/App_Data/clientData.json
+App_Data/clientData.json
+*clientData.json
+**/*/clientData.json
