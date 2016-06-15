@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -14,6 +15,15 @@ namespace TopRatedApp.Helpers
 {
     public class GithubApiHelper
     {
+        public static JObject JClientData
+            =>
+                JObject.Parse(
+                    File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.GetData("DataDirectory").ToString(),
+                        "clientData.json")));
+
+        public static string ClientId = JClientData["clientId"].Value<string>();
+        public static string ClientSecret = JClientData["clientSecret"].Value<string>();
+        
         private static async Task<string> LoadJsonString(string url)
         {
             var json = "";

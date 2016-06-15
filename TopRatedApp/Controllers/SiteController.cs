@@ -3,24 +3,21 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Web.Security;
 using Octokit;
+using TopRatedApp.Helpers;
 using TopRatedApp.Models;
 
 namespace TopRatedApp.Controllers
 {
     public class SiteController : Controller
     {
-        private const string ClientId = "1";
-        private const string ClientSecret = "1";
-        private readonly GitHubClient _client =
-            new GitHubClient(new ProductHeaderValue("TopRated-for-GitHub-by-elv1s42"));
+        private readonly GitHubClient _client = new GitHubClient(new ProductHeaderValue("TopRated-for-GitHub-by-elv1s42"));
 
         private string GetOauthLoginUrl()
         {
             var csrf = Membership.GeneratePassword(24, 1);
             Session["CSRF:State"] = csrf;
-
-            // 1. Redirect users to request GitHub access
-            var request = new OauthLoginRequest(ClientId)
+            
+            var request = new OauthLoginRequest(GithubApiHelper.ClientId)
             {
                 Scopes = { "user", "notifications" },
                 State = csrf
@@ -33,13 +30,12 @@ namespace TopRatedApp.Controllers
         {
             if (!string.IsNullOrEmpty(code))
             {
-
                 var expectedState = Session["CSRF:State"] as string;
                 if (state != expectedState) throw new InvalidOperationException("SECURITY FAIL!");
                 Session["CSRF:State"] = null;
 
                 var token = await _client.Oauth.CreateAccessToken(
-                    new OauthTokenRequest(ClientId, ClientSecret, code));
+                    new OauthTokenRequest(GithubApiHelper.ClientId, GithubApiHelper.ClientSecret, code));
                 Session["OAuthToken"] = token.AccessToken;
             }
 
@@ -85,12 +81,6 @@ namespace TopRatedApp.Controllers
         {
             return View("Contact");
         }
-
-        /*// GET: Badges
-        public ActionResult Badges()
-        {
-            return View("Badges");
-        }*/
         
         // GET: Statistics
         public ActionResult Statistics()
