@@ -234,3 +234,5 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
+TopRatedApp/App_Data/clientData.json
+TopRatedApp/App_Data/clientData.json
