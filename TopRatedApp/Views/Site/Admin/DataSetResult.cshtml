@@ -1,0 +1,11 @@
+﻿@model TopRatedApp.Models.AdminViewModel
+@{
+    Layout = null;
+    var res = ViewData["result"] as string ?? "";
+}
+@if (!res.Equals(""))
+{
+    <div class="alert alert-success" id="resultId">
+        @res
+    </div>
+}

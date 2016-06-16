@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -13,13 +12,37 @@ using TopRatedApp.Interfaces;
 
 namespace TopRatedApp.Helpers
 {
-    public class GithubApiHelper
+    public class GitHubHelper
     {
-        public static JObject JClientData
+        private static string ClientDataPath => Path.Combine(AppDomain.CurrentDomain.GetData("DataDirectory").ToString(),
+            "clientData.json");
+
+        private static JObject JClientData
             =>
                 JObject.Parse(
-                    File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.GetData("DataDirectory").ToString(),
-                        "clientData.json")));
+                    File.ReadAllText(ClientDataPath));
+
+        internal static string SetClientData(string id, string secret)
+        {
+            var result = "Done:)";
+            try
+            {
+                var data = $"{{\r\n  \"clientId\": \"{id}\",\r\n  \"clientSecret\": \"{secret}\"\r\n}}";
+                if (ClientId.Equals("") && ClientSecret.Equals(""))
+                {
+                    File.WriteAllText(ClientDataPath, data);
+                }
+                else
+                {
+                    result = "Data is not empty!";
+                }
+            }
+            catch (Exception ex)
+            {
+                return $"Error: {ex.Message}! {ex.StackTrace}";
+            }
+            return result;
+        }
 
         public static string ClientId = JClientData["clientId"].Value<string>();
         public static string ClientSecret = JClientData["clientSecret"].Value<string>();

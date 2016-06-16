@@ -1,0 +1,22 @@
+﻿@model TopRatedApp.Models.AdminViewModel
+@{
+    ViewBag.Title = "Admin";
+    var res = Model.Result;
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("SetData", "Site"))
+{
+    <div class="form-group">
+        @Html.Label("Id")
+        @Html.TextBox("txtId")
+    </div>
+    <div class="form-group">
+        @Html.Label("Secret")
+        @Html.TextBox("txtSecret")
+    </div>
+    <input class="btn btn-info" type="submit" value="Set" />
+}
+<hr>
+@Html.Partial("Admin/DataSetResult", new ViewDataDictionary { { "result", res } })

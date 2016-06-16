@@ -19,8 +19,8 @@ namespace TopRatedApp.Controllers
         private static GitHubClient GetClient()
         {
             var c = new GitHubClient(new ProductHeaderValue("TopRated-Badges-for-GitHub-by-elv1s42"));
-            var clientId = GithubApiHelper.ClientId;
-            var clientSecret = GithubApiHelper.ClientSecret;
+            var clientId = GitHubHelper.ClientId;
+            var clientSecret = GitHubHelper.ClientSecret;
             c.Connection.Credentials = new Credentials(clientId, clientSecret);
             return c;
         }
@@ -47,9 +47,9 @@ namespace TopRatedApp.Controllers
 
             var req = System.Web.HttpContext.Current.Request;
             var bqd = new BadgeQueryData(req);
-            var repoData = await GithubApiHelper.GetRepoData(bqd.User, bqd.Repo);
+            var repoData = await GitHubHelper.GetRepoData(bqd.User, bqd.Repo);
 
-            var langTopRatedData = await GithubApiHelper.GetTopCategories(repoData.Lang);
+            var langTopRatedData = await GitHubHelper.GetTopCategories(repoData.Lang);
             foreach (var c in langTopRatedData.Categories)
             {
                 Debug.WriteLine($"cp: {c.PercentageString}, f: {c.From}, t: {c.To}");

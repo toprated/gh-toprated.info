@@ -144,6 +144,8 @@
     <Content Include="Views\Badges\SectionViews\TextSectionView.cshtml" />
     <Content Include="Views\Badges\SectionViews\IconSectionView.cshtml" />
     <Content Include="Views\Badges\SectionViews\SectionView.cshtml" />
+    <Content Include="Views\Site\Admin\Admin.cshtml" />
+    <Content Include="Views\Site\Admin\DataSetResult.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -214,7 +216,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ColorHelper.cs" />
-    <Compile Include="Helpers\GithubApiHelper.cs" />
+    <Compile Include="Helpers\GitHubHelper.cs" />
     <Compile Include="Helpers\PathHelper.cs" />
     <Compile Include="Extensions\QueryStringExtensions.cs" />
     <Compile Include="Interfaces\IBadge.cs" />
@@ -229,6 +231,7 @@
     <Compile Include="Interfaces\IRepoData.cs" />
     <Compile Include="Interfaces\ISection.cs" />
     <Compile Include="Interfaces\ISectionStyle.cs" />
+    <Compile Include="Models\AdminViewModel.cs" />
     <Compile Include="Models\BadgesViewModel.cs" />
     <Compile Include="Models\SimpleLanguageBadgeViewModel.cs" />
     <Compile Include="Models\LanguageBadgeViewModel.cs" />

@@ -15,20 +15,27 @@ namespace TopRatedApp
             routes.MapRoute("Badges/SimpleLanguageBadge", "Badges/SimpleLanguageBadge", new { controller = "Badges", action = "GetSimpleLanguageBadge" });
             //Logos:
             routes.MapRoute("Logos/MainLogo", "Logos/MainLogo", new { controller = "Logos", action = "GetMainLogo" });
-            
+
+            //Authorize:
             routes.MapRoute(
                 name: "Authorize",
                 url: "Authorize/{id}",
                 defaults: new { controller = "Site", action = "Authorize", id = UrlParameter.Optional }
             );
 
-            //routes.RouteSitePage("Authorize");
-            
+            //Set data:
+            routes.MapRoute(
+                name: "SetData",
+                url: "SetData",
+                defaults: new { controller = "Site", action = "SetData" }
+            );
+
             //Site pages:
             routes.RouteSitePage("Badges");
             routes.RouteSitePage("Statistics");
             routes.RouteSitePage("Top1000");
             routes.RouteSitePage("Languages");
+            routes.RouteSitePage("Admin");
             routes.RouteSitePage("About");
             routes.RouteSitePage("Contact");
             routes.RouteSiteIndexPage();

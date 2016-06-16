@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -17,7 +18,7 @@ namespace TopRatedApp.Controllers
             var csrf = Membership.GeneratePassword(24, 1);
             Session["CSRF:State"] = csrf;
             
-            var request = new OauthLoginRequest(GithubApiHelper.ClientId)
+            var request = new OauthLoginRequest(GitHubHelper.ClientId)
             {
                 Scopes = { "user", "notifications" },
                 State = csrf
@@ -35,7 +36,7 @@ namespace TopRatedApp.Controllers
                 Session["CSRF:State"] = null;
 
                 var token = await _client.Oauth.CreateAccessToken(
-                    new OauthTokenRequest(GithubApiHelper.ClientId, GithubApiHelper.ClientSecret, code));
+                    new OauthTokenRequest(GitHubHelper.ClientId, GitHubHelper.ClientSecret, code));
                 Session["OAuthToken"] = token.AccessToken;
             }
 
@@ -75,6 +76,28 @@ namespace TopRatedApp.Controllers
         {
             return View("About");
         }
+        
+        // GET: Admin
+        public ActionResult Admin()
+        {
+            var tempModel = TempData["setResultModel"] as AdminViewModel;
+            var model = tempModel ?? new AdminViewModel();
+            return View("Admin/Admin", model);
+        }
+
+        //Set data:
+        public ActionResult SetData(FormCollection form)
+        {
+            var id = form["txtId"];
+            var s = form["txtSecret"];
+            //Debug.WriteLine($"Setting data: {id}, {s}");
+            //Debug.WriteLine($"DATA BEFORE: {GitHubHelper.ClientId}, {GitHubHelper.ClientSecret}");
+            var res = GitHubHelper.SetClientData(id, s);
+            //Debug.WriteLine($"DATA AFTER: {GitHubHelper.ClientId}, {GitHubHelper.ClientSecret}");
+            var model = new AdminViewModel(res);
+            TempData["setResultModel"] = model;
+            return RedirectToAction("Admin", model);
+        }
 
         // GET: Contact
         public ActionResult Contact()
@@ -99,6 +122,5 @@ namespace TopRatedApp.Controllers
         {
             return View("Languages");
         }
-
     }
 }
