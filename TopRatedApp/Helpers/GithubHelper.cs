@@ -34,7 +34,8 @@ namespace TopRatedApp.Helpers
             {
                 var data = JsonConvert.SerializeObject(clientData);
                 var current = await GetClientData();
-                if (current.ClientId.Equals("") && current.ClientSecret.Equals(""))
+                if (current.ClientId.Equals("") && current.ClientSecret.Equals("")
+                    && current.Login.Equals("") && current.Password.Equals(""))
                 {
                     using (var file = File.CreateText(ClientDataPath))
                     {

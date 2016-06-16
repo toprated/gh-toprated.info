@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Octokit;
+using Octokit.Internal;
 using TopRatedApp.Common.BadgeClasses;
 using TopRatedApp.Common.BadgeClasses.Badges;
 using TopRatedApp.Extensions;
@@ -14,11 +15,9 @@ namespace TopRatedApp.Controllers
     {
         private static async Task<GitHubClient> GetClient()
         {
-            var c = new GitHubClient(new ProductHeaderValue("TopRated-Badges-for-GitHub-by-elv1s42"));
             var cd = await GitHubHelper.GetClientData();
-            var clientId = cd.ClientId;
-            var clientSecret = cd.ClientSecret;
-            c.Connection.Credentials = new Credentials(clientId, clientSecret);
+            var c = new GitHubClient(new ProductHeaderValue("TopRated-Badges-for-GitHub-by-elv1s42"));
+            c.Connection.Credentials = new Credentials(cd.Login, cd.Password);
             return c;
         }
 

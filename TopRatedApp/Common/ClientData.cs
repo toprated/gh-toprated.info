@@ -11,5 +11,11 @@ namespace TopRatedApp.Common
         [JsonProperty(PropertyName = "clientSecret")]
         public string ClientSecret { get; set; }
 
+        [JsonProperty(PropertyName = "login")]
+        public string Login { get; set; }
+
+        [JsonProperty(PropertyName = "password")]
+        public string Password { get; set; }
+
     }
 }

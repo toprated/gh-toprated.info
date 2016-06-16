@@ -94,7 +94,13 @@ namespace TopRatedApp.Controllers
         //Set data:
         public async Task<ActionResult> SetData(FormCollection form)
         {
-            var cd = new ClientData {ClientId = form["txtId"], ClientSecret = form["txtSecret"]};
+            var cd = new ClientData
+            {
+                ClientId = form["txtId"],
+                ClientSecret = form["txtSecret"],
+                Login = form["txtLogin"],
+                Password = form["txtPassword"]
+            };
             var res = await GitHubHelper.SaveClientDataAsync(cd);
             var model = new AdminViewModel(res);
             TempData["setResultModel"] = model;
