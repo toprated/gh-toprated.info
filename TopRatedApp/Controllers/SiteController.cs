@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Web.Security;
 using Octokit;
+using TopRatedApp.Common;
 using TopRatedApp.Helpers;
 using TopRatedApp.Models;
 
@@ -13,12 +14,14 @@ namespace TopRatedApp.Controllers
     {
         private readonly GitHubClient _client = new GitHubClient(new ProductHeaderValue("TopRated-for-GitHub-by-elv1s42"));
 
-        private string GetOauthLoginUrl()
+        private async Task<string> GetOauthLoginUrl()
         {
             var csrf = Membership.GeneratePassword(24, 1);
             Session["CSRF:State"] = csrf;
             
-            var request = new OauthLoginRequest(GitHubHelper.ClientId)
+            var cd = await GitHubHelper.GetClientData();
+
+            var request = new OauthLoginRequest(cd.ClientId)
             {
                 Scopes = { "user", "notifications" },
                 State = csrf
@@ -35,8 +38,10 @@ namespace TopRatedApp.Controllers
                 if (state != expectedState) throw new InvalidOperationException("SECURITY FAIL!");
                 Session["CSRF:State"] = null;
 
+                var cd = await GitHubHelper.GetClientData();
+
                 var token = await _client.Oauth.CreateAccessToken(
-                    new OauthTokenRequest(GitHubHelper.ClientId, GitHubHelper.ClientSecret, code));
+                    new OauthTokenRequest(cd.ClientId, cd.ClientSecret, code));
                 Session["OAuthToken"] = token.AccessToken;
             }
 
@@ -61,7 +66,8 @@ namespace TopRatedApp.Controllers
             }
             catch (AuthorizationException)
             {
-                return Redirect(GetOauthLoginUrl());
+                var url = await GetOauthLoginUrl();
+                return Redirect(url);
             }
         }
 
@@ -86,14 +92,10 @@ namespace TopRatedApp.Controllers
         }
 
         //Set data:
-        public ActionResult SetData(FormCollection form)
+        public async Task<ActionResult> SetData(FormCollection form)
         {
-            var id = form["txtId"];
-            var s = form["txtSecret"];
-            //Debug.WriteLine($"Setting data: {id}, {s}");
-            //Debug.WriteLine($"DATA BEFORE: {GitHubHelper.ClientId}, {GitHubHelper.ClientSecret}");
-            var res = GitHubHelper.SetClientData(id, s);
-            //Debug.WriteLine($"DATA AFTER: {GitHubHelper.ClientId}, {GitHubHelper.ClientSecret}");
+            var cd = new ClientData {ClientId = form["txtId"], ClientSecret = form["txtSecret"]};
+            var res = await GitHubHelper.SaveClientDataAsync(cd);
             var model = new AdminViewModel(res);
             TempData["setResultModel"] = model;
             return RedirectToAction("Admin", model);

@@ -1,10 +1,6 @@
-﻿using System;
-using System.Diagnostics;
-using System.IO;
+﻿using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using Octokit;
 using TopRatedApp.Common.BadgeClasses;
 using TopRatedApp.Common.BadgeClasses.Badges;
@@ -16,11 +12,12 @@ namespace TopRatedApp.Controllers
 {
     public class BadgesController : Controller
     {
-        private static GitHubClient GetClient()
+        private static async Task<GitHubClient> GetClient()
         {
             var c = new GitHubClient(new ProductHeaderValue("TopRated-Badges-for-GitHub-by-elv1s42"));
-            var clientId = GitHubHelper.ClientId;
-            var clientSecret = GitHubHelper.ClientSecret;
+            var cd = await GitHubHelper.GetClientData();
+            var clientId = cd.ClientId;
+            var clientSecret = cd.ClientSecret;
             c.Connection.Credentials = new Credentials(clientId, clientSecret);
             return c;
         }
@@ -32,7 +29,7 @@ namespace TopRatedApp.Controllers
 
             var req = System.Web.HttpContext.Current.Request;
             var bqd = new BadgeQueryData(req);
-            var c = GetClient();
+            var c = await GetClient();
             var rData = await c.GetRepoData(bqd);
             var badge = new LanguageBadge(bqd, rData.Lang);
             var viewModel = new LanguageBadgeViewModel(badge);

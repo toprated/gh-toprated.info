@@ -198,6 +198,7 @@
     <Compile Include="Common\BadgeClasses\FontStyle.cs" />
     <Compile Include="Common\BadgeClasses\Language.cs" />
     <Compile Include="Common\BadgeClasses\Languages.cs" />
+    <Compile Include="Common\ClientData.cs" />
     <Compile Include="Common\RepoData.cs" />
     <Compile Include="Common\BadgeClasses\Section.cs" />
     <Compile Include="Common\BadgeClasses\SectionStyle.cs" />

@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using TopRatedApp.Common;
 using TopRatedApp.Common.BadgeClasses;
@@ -17,20 +18,28 @@ namespace TopRatedApp.Helpers
         private static string ClientDataPath => Path.Combine(AppDomain.CurrentDomain.GetData("DataDirectory").ToString(),
             "clientData.json");
 
-        private static JObject JClientData
-            =>
-                JObject.Parse(
-                    File.ReadAllText(ClientDataPath));
-
-        internal static string SetClientData(string id, string secret)
+        internal static async Task<ClientData> GetClientData()
+        {
+            using (var reader = File.OpenText(ClientDataPath))
+            {
+                var fileText = await reader.ReadToEndAsync();
+                return JsonConvert.DeserializeObject<ClientData>(fileText);
+            }
+        }
+        
+        internal static async Task<string> SaveClientDataAsync(ClientData clientData)
         {
             var result = "Done:)";
             try
             {
-                var data = $"{{\r\n  \"clientId\": \"{id}\",\r\n  \"clientSecret\": \"{secret}\"\r\n}}";
-                if (ClientId.Equals("") && ClientSecret.Equals(""))
+                var data = JsonConvert.SerializeObject(clientData);
+                var current = await GetClientData();
+                if (current.ClientId.Equals("") && current.ClientSecret.Equals(""))
                 {
-                    File.WriteAllText(ClientDataPath, data);
+                    using (var file = File.CreateText(ClientDataPath))
+                    {
+                        await file.WriteAsync(data);
+                    }
                 }
                 else
                 {
@@ -43,9 +52,6 @@ namespace TopRatedApp.Helpers
             }
             return result;
         }
-
-        public static string ClientId = JClientData["clientId"].Value<string>();
-        public static string ClientSecret = JClientData["clientSecret"].Value<string>();
         
         private static async Task<string> LoadJsonString(string url)
         {
