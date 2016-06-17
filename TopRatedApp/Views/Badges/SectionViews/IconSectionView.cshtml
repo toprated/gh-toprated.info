@@ -1,5 +1,5 @@
 ﻿@using System.Diagnostics
-@using System.Globalization
+@using TopRatedApp.Extensions
 @using TopRatedApp.Interfaces
 
 @{
@@ -14,21 +14,21 @@
 
     var bcg = s.SectionStyle.BackgroundColor;
     var pl = style.BadgeGeometry.Padding.BorderLeft;
-    var pt = style.BadgeGeometry.Padding.Top;
+    var pt = 1;//style.BadgeGeometry.Padding.Top;
 
-    Debug.WriteLine($"pl: {pl}");
+    const int r = 10;
 
-    var scale = ((s.H - 2*pt)/20).ToString("G", CultureInfo.InvariantCulture);
+    var scale = ((s.H - 2)/(r*2)).ToAttrData();
 
-    var w = s.W.ToString("G", CultureInfo.InvariantCulture);
-    var h = s.H.ToString("G", CultureInfo.InvariantCulture);
+    var w = s.W.ToAttrData();
+    var h = s.H.ToAttrData();
 }
 
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="@w" height="@h" >
     <g id="section-logo-group" >
         <path d="@s.Path" fill="@bcg"/>
         <g id="section-main-group"  transform="scale(@scale)" >
-            <circle id="logo-circle" cx="@(pl + 10)" cy="@(pt + 10)" stroke="black" style="stroke-width: 0;" r="10" fill="#FFA500"/>
+            <circle id="logo-circle" cx="@(pl + r)" cy="@(pt + r)" stroke="black" style="stroke-width: 0;" r="@r" fill="#FFA500"/>
             <text fill="@bcg" x="@(pl + 1)" y="@(pt + 14)" id="logo-t-text" style="font-family: Arial; font-size: 16px; font-style: normal;">T</text>
             <text fill="@bcg" x="@(pl + 8)" y="@(pt + 18)" id="logo-r-text" style="font-family: Arial; font-size: 16px; font-style: normal;">R</text>
         </g>

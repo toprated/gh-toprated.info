@@ -14,6 +14,8 @@ namespace TopRatedApp.Common.BadgeClasses
             H = 0;
             X = 0;
             Y = 0;
+            Tw = 0;
+            Th = 0;
             Path = "";
         }
 
@@ -26,6 +28,8 @@ namespace TopRatedApp.Common.BadgeClasses
             H = h;
             X = 0;
             Y = 0;
+            Tw = 0;
+            Th = 0;
             Path = "";
         }
 
@@ -36,6 +40,8 @@ namespace TopRatedApp.Common.BadgeClasses
         public double H { get; set; }
         public double X { get; set; }
         public double Y { get; set; }
+        public double Tw { get; set; }
+        public double Th { get; set; }
         public string Path { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.Windows.Forms;
 using TopRatedApp.Helpers;
 using TopRatedApp.Interfaces;
 
@@ -46,8 +47,11 @@ namespace TopRatedApp.Common.BadgeClasses
         {
             var bitmap = new Bitmap(1, 1);
             var graphics = Graphics.FromImage(bitmap);
-            var font = new Font(FontFamily, FontSize);//, GraphicsUnit.Pixel);
-            return graphics.MeasureString(text, font);
+            var font = new Font(FontFamily, FontSize);
+            var fontP = new Font(FontFamily, FontSize, GraphicsUnit.Pixel);
+            var sW = graphics.MeasureString(text, font, 0, StringFormat.GenericTypographic);
+            var sH = graphics.MeasureString(text, fontP, 0, StringFormat.GenericTypographic);
+            return new SizeF(sW.Width, sH.Height);
         }
     }
 }

@@ -1,11 +1,11 @@
-﻿using System.Globalization;
+﻿using TopRatedApp.Extensions;
 using TopRatedApp.Interfaces;
 
 namespace TopRatedApp.Common.TopRatedCategories
 {
     public class Category : ICategory
     {
-        public string PercentageString => Percentage.ToString("G", CultureInfo.InvariantCulture);
+        public string PercentageString => Percentage.ToAttrData();
         public double Percentage { get; set; }
         public int From { get; set; }
         public int To { get; set; }

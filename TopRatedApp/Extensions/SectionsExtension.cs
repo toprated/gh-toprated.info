@@ -1,5 +1,5 @@
 ﻿using System;
-using TopRatedApp.Common;
+using System.Diagnostics;
 using TopRatedApp.Common.BadgeClasses;
 using TopRatedApp.Enums;
 using TopRatedApp.Helpers;
@@ -12,7 +12,8 @@ namespace TopRatedApp.Extensions
         public static Section[] GetFullSections(this Section[] sections, IBadgeStyle badgeStyle)
         {
             var count = sections.Length;
-            var pBr = badgeStyle.BadgeGeometry.Padding.Borders;
+            var pL = badgeStyle.BadgeGeometry.Padding.BorderLeft;
+            var pR = badgeStyle.BadgeGeometry.Padding.BorderRight;
             var pMd = badgeStyle.BadgeGeometry.Padding.Middle;
             var pTp = badgeStyle.BadgeGeometry.Padding.Top;
             var pBt = badgeStyle.BadgeGeometry.Padding.Bottom;
@@ -25,40 +26,44 @@ namespace TopRatedApp.Extensions
                 double w;
                 double x;
                 var textSize = section.GetTexSize();
-                var textWidth = section.SectionType.Equals(SectionType.Icon) ? section.W - pBr - pMd : Convert.ToInt32(textSize.Width);
-                var textHeight = section.SectionType.Equals(SectionType.Icon) ? section.H - pTp - pBt : Convert.ToInt32(textSize.Height);
+                var tW = section.SectionType.Equals(SectionType.Icon) ? section.W - pL - pMd : Convert.ToInt32(textSize.Width);
+                var tH = section.SectionType.Equals(SectionType.Icon) ? section.H - pTp - pBt : Convert.ToInt32(textSize.Height);
                 var sectionPosition = section.GetPosition(i, count);
                 switch (sectionPosition)
                 {
                     case SectionPosition.Left:
-                        w = pBr + textWidth + pMd;
-                        x = pBr + badgeWidth + textWidth / 2.0;
+                        w = pL + tW + pMd;
+                        x = pL + badgeWidth + tW / 2.0;
                         break;
                     case SectionPosition.Middle:
-                        w = pMd + textWidth + pMd;
-                        x = pMd + badgeWidth + textWidth / 2.0;
+                        w = pMd + tW + pMd;
+                        x = pMd + badgeWidth + tW / 2.0;
                         break;
                     case SectionPosition.Right:
-                        w = pMd + textWidth + pBr;
-                        x = pMd + badgeWidth + textWidth / 2.0;
+                        w = pMd + tW + pR;
+                        x = pMd + badgeWidth + tW / 2.0;
                         break;
                     case SectionPosition.OneSectionOnly:
-                        w = pBr + textWidth + pBr;
-                        x = pBr + badgeWidth + textWidth / 2.0;
+                        w = pL + tW + pR;
+                        x = pL + badgeWidth + tW / 2.0;
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
 
-                var h = pTp + textHeight + pBt;
-                var y = pTp  + textHeight / 2;
+                var h = pTp + tH + pBt;
+                var y = pTp  + tH;
                 var sectionPath = PathHelper.GetSectionPath(sectionPosition, badgeWidth, 0, w, h, r);
 
                 sections[i].H = h;
-                sections[i].W = w;                 
+                sections[i].W = w;
                 sections[i].X = x;
                 sections[i].Y = y;
+                sections[i].Tw = tW;
+                sections[i].Th = tH;
                 sections[i].Path = sectionPath;
+
+                Debug.WriteLine($"h:{h}, w:{w}, x:{x}, y:{y}, th:{tH}, tw:{tW}");
 
                 badgeWidth += w;
                 if (badgeHeight < h)

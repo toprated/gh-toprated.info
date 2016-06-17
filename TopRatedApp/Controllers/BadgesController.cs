@@ -17,7 +17,10 @@ namespace TopRatedApp.Controllers
         {
             var cd = await GitHubHelper.GetClientData();
             var c = new GitHubClient(new ProductHeaderValue("TopRated-Badges-for-GitHub-by-elv1s42"));
-            c.Connection.Credentials = new Credentials(cd.Login, cd.Password);
+            if (!cd.Login.Equals("") && !cd.Password.Equals(""))
+            {
+                c.Connection.Credentials = new Credentials(cd.Login, cd.Password);
+            }
             return c;
         }
 

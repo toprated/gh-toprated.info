@@ -31,11 +31,11 @@ namespace TopRatedApp.Common.BadgeClasses.Badges
             new BadgeGeometry(
                 new BadgePadding(
                     borders: 2, 
-                    left: 3, 
-                    right: 2, 
-                    middle: 1, 
-                    top: 1, 
-                    bottom: 1), 
+                    left: 2, 
+                    right: 3, 
+                    middle: 2, 
+                    top: 3, 
+                    bottom: 4), 
                 radius: 3);
 
         public string BadgePath => PathHelper.GetSimpleRoundedRectPath(0, 0, Width, Height, BadgeStyle.BadgeGeometry.Radius);
@@ -69,7 +69,7 @@ namespace TopRatedApp.Common.BadgeClasses.Badges
             if (!BadgeQueryData.Icon) return;
 
             var height = Convert.ToInt32(BadgeStyle.DefaultFontStyle.GetTextSize("test").Height) + BadgeGeometry.Padding.Top + BadgeGeometry.Padding.Bottom;
-            var width = height + BadgeGeometry.Padding.Borders;
+            var width = height + BadgeGeometry.Padding.Middle;
             AddSection(new Section(SectionType.Icon, style, w: width, h: height));
         }
 

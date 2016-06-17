@@ -11,6 +11,8 @@ namespace TopRatedApp.Interfaces
         double H { get; set; }
         double X { get; set; }
         double Y { get; set; }
+        double Tw { get; set; }
+        double Th { get; set; }
         string Path { get; set; }
     }
 }

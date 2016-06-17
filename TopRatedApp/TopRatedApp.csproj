@@ -213,6 +213,7 @@
     <Compile Include="Extensions\RouteCollectionExtensions.cs" />
     <Compile Include="Extensions\SectionExtensions.cs" />
     <Compile Include="Extensions\SectionsExtension.cs" />
+    <Compile Include="Extensions\DoubleExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
