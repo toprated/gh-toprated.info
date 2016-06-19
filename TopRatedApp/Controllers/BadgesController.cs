@@ -39,7 +39,7 @@ namespace TopRatedApp.Controllers
             return View("LanguageBadge", viewModel);
         }
 
-        // GET: Language badge
+        // GET: Top rated badge
         public async Task<ActionResult> GetTopRatedBadge()
         {
             Response.ContentType = "image/svg+xml";
@@ -58,6 +58,23 @@ namespace TopRatedApp.Controllers
             var viewModel = new TopRatedBadgeViewModel(badge);
 
             return View("TopRatedBadge", viewModel);
+        }
+
+        // GET: Top 1000 badge
+        public async Task<ActionResult> GetTop1000Badge()
+        {
+            Response.ContentType = "image/svg+xml";
+
+            var req = System.Web.HttpContext.Current.Request;
+            var bqd = new BadgeQueryData(req);
+            var repoData = await GitHubHelper.GetRepoData(bqd.User, bqd.Repo);
+
+
+
+            var badge = new Top1000Badge(bqd, "356", repoData.Lang);
+            var viewModel = new Top1000BadgeViewModel(badge);
+
+            return View("Top1000Badge", viewModel);
         }
 
         // GET: Simple language badge

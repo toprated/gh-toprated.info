@@ -63,7 +63,7 @@ namespace TopRatedApp.Extensions
                 sections[i].Th = tH;
                 sections[i].Path = sectionPath;
 
-                Debug.WriteLine($"h:{h}, w:{w}, x:{x}, y:{y}, th:{tH}, tw:{tW}");
+                //Debug.WriteLine($"h:{h}, w:{w}, x:{x}, y:{y}, th:{tH}, tw:{tW}");
 
                 badgeWidth += w;
                 if (badgeHeight < h)

@@ -5,7 +5,7 @@ namespace TopRatedApp.Interfaces
 {
     public interface ILangTopRatedData
     {
-        List<Category> Categories { get; set; }
+        List<ICategory> Categories { get; set; }
         int TotalRepos { get; set; }
         ILanguage Language { get; set; }
     }

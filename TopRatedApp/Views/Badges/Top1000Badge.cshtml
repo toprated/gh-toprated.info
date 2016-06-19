@@ -1,12 +1,12 @@
-﻿@model TopRatedApp.Models.TopRatedBadgeViewModel
+﻿@model TopRatedApp.Models.Top1000BadgeViewModel
 @{
     Layout = null;
 
     var badge = Model.Badge;
     var style = badge.BadgeStyle;
 }
-<!--This is top rated badge-->
-<svg xmlns="http://www.w3.org/2000/svg" id="top-rated-badge" height="@badge.Height" width="@badge.Width" x="0" y="0">
+<!--This is top 1000 badge-->
+<svg xmlns="http://www.w3.org/2000/svg" id="top-1000-badge" height="@badge.Height" width="@badge.Width" x="0" y="0">
     <linearGradient id="badge-gradient-id" x1="0%" x2="0%" y1="0%" y2="90%"><stop offset="10%" stop-color="white" stop-opacity="0.1"/>
         <stop offset="90%" stop-color="black" stop-opacity="0.1"/>
     </linearGradient>

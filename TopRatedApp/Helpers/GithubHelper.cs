@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -59,19 +60,40 @@ namespace TopRatedApp.Helpers
             var json = "";
             using (var wc = new WebClient())
             {
-                try
+                var count = 0;
+                bool success;
+                do
                 {
-                    wc.Headers.Add("User-Agent: Other");
-                    Debug.WriteLine($"GETTING: {url}");
-                    var r = await wc.DownloadStringTaskAsync(url);
+                    success = false;
+                    count++;
+                    try
+                    {
+                        Debug.WriteLine($"try #{count}");
+                        var cd = await GetClientData();
+                        var credentials = Convert.ToBase64String(
+                            Encoding.ASCII.GetBytes(cd.Login + ":" + cd.Password));
+                        Debug.WriteLine($"CR: {credentials} " + cd.Login + ":" + cd.Password);
+                        wc.Headers[HttpRequestHeader.Authorization] = $"Basic {credentials}";
+                        wc.Proxy = null;
+                        wc.Headers.Add(HttpRequestHeader.Accept, "application/xml");
+                        wc.Headers.Add(HttpRequestHeader.ContentType, "application/xml; charset=utf-8");
+                        wc.Headers.Add(HttpRequestHeader.Authorization, "Basic " + credentials);
+                        wc.Credentials = new NetworkCredential(cd.Login, cd.Password);
 
-                    json = r;
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine($"{ex.Message} in {ex.StackTrace}");
-                    Debug.WriteLine($"Inner: {ex.InnerException?.Message} in {ex.InnerException?.StackTrace}");
-                }
+                        //wc.Headers.Add("User-Agent: Other");
+                        Debug.WriteLine($"GETTING: {url}");
+                        var r = await wc.DownloadStringTaskAsync(url);
+
+                        json = r;
+                        success = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine($"{ex.Message} in {ex.StackTrace}");
+                        Debug.WriteLine($"Inner: {ex.InnerException?.Message} in {ex.InnerException?.StackTrace}");
+                    }
+                } while (!success && count <= 5);
+                
             }
             return json.Equals("") ? "" : json;
         }

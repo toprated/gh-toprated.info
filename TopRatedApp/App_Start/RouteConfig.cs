@@ -10,11 +10,17 @@ namespace TopRatedApp
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             //Badges:
-            routes.MapRoute("Badges/LanguageBadge", "Badges/LanguageBadge", new { controller = "Badges", action = "GetLanguageBadge" });
-            routes.MapRoute("Badges/TopRatedBadge", "Badges/TopRatedBadge", new { controller = "Badges", action = "GetTopRatedBadge" });
-            routes.MapRoute("Badges/SimpleLanguageBadge", "Badges/SimpleLanguageBadge", new { controller = "Badges", action = "GetSimpleLanguageBadge" });
+            routes.MapRoute("Badges/LanguageBadge", "Badges/LanguageBadge", 
+                new { controller = "Badges", action = "GetLanguageBadge" });
+            routes.MapRoute("Badges/TopRatedBadge", "Badges/TopRatedBadge", 
+                new { controller = "Badges", action = "GetTopRatedBadge" });
+            routes.MapRoute("Badges/Top1000Badge", "Badges/Top1000Badge", 
+                new { controller = "Badges", action = "GetTop1000Badge" });
+            routes.MapRoute("Badges/SimpleLanguageBadge", "Badges/SimpleLanguageBadge", 
+                new { controller = "Badges", action = "GetSimpleLanguageBadge" });
             //Logos:
-            routes.MapRoute("Logos/MainLogo", "Logos/MainLogo", new { controller = "Logos", action = "GetMainLogo" });
+            routes.MapRoute("Logos/MainLogo", "Logos/MainLogo", 
+                new { controller = "Logos", action = "GetMainLogo" });
 
             //Authorize:
             routes.MapRoute(

@@ -34,8 +34,8 @@ namespace TopRatedApp.Common.BadgeClasses.Badges
                     left: 2, 
                     right: 3, 
                     middle: 2, 
-                    top: 3, 
-                    bottom: 4), 
+                    top: 2, 
+                    bottom: 5), 
                 radius: 3);
 
         public string BadgePath => PathHelper.GetSimpleRoundedRectPath(0, 0, Width, Height, BadgeStyle.BadgeGeometry.Radius);
