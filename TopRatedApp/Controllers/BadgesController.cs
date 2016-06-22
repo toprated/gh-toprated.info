@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using Octokit;
-using Octokit.Internal;
+using TopRatedApp.Common;
 using TopRatedApp.Common.BadgeClasses;
 using TopRatedApp.Common.BadgeClasses.Badges;
 using TopRatedApp.Extensions;
@@ -13,17 +13,6 @@ namespace TopRatedApp.Controllers
 {
     public class BadgesController : Controller
     {
-        private static async Task<GitHubClient> GetClient()
-        {
-            var cd = await GitHubHelper.GetClientData();
-            var c = new GitHubClient(new ProductHeaderValue("TopRated-Badges-for-GitHub-by-elv1s42"));
-            if (!cd.Login.Equals("") && !cd.Password.Equals(""))
-            {
-                c.Connection.Credentials = new Credentials(cd.Login, cd.Password);
-            }
-            return c;
-        }
-
         // GET: Language badge
         public async Task<ActionResult> GetLanguageBadge()
         {
@@ -31,7 +20,7 @@ namespace TopRatedApp.Controllers
 
             var req = System.Web.HttpContext.Current.Request;
             var bqd = new BadgeQueryData(req);
-            var c = await GetClient();
+            var c = await GitHubHelper.GetClient();
             var rData = await c.GetRepoData(bqd);
             var badge = new LanguageBadge(bqd, rData.Lang);
             var viewModel = new LanguageBadgeViewModel(badge);
@@ -46,12 +35,13 @@ namespace TopRatedApp.Controllers
 
             var req = System.Web.HttpContext.Current.Request;
             var bqd = new BadgeQueryData(req);
-            var repoData = await GitHubHelper.GetRepoData(bqd.User, bqd.Repo);
+            var c = await GitHubHelper.GetClient();
+            var repoData = await c.GetRepoData(bqd);
 
             var langTopRatedData = await GitHubHelper.GetTopCategories(repoData.Lang);
-            foreach (var c in langTopRatedData.Categories)
+            foreach (var cat in langTopRatedData.Categories)
             {
-                Debug.WriteLine($"cp: {c.PercentageString}, f: {c.From}, t: {c.To}");
+                Debug.WriteLine($"cp: {cat.PercentageString}, f: {cat.From}, t: {cat.To}");
             }
 
             var badge = new TopRatedBadge(bqd, "0.05%", repoData.Lang);
@@ -69,9 +59,13 @@ namespace TopRatedApp.Controllers
             var bqd = new BadgeQueryData(req);
             var repoData = await GitHubHelper.GetRepoData(bqd.User, bqd.Repo);
 
+            var top1000 = await DataGetter.GetTop1000(repoData.Lang.ApiName);
 
+            var place = top1000.Repos.FirstOrDefault(r => r.UserName.Equals(repoData.UserName)
+                                                          && r.RepoName.Equals(repoData.RepoName))?.Place 
+                                                          ?? 0;
 
-            var badge = new Top1000Badge(bqd, "356", repoData.Lang);
+            var badge = new Top1000Badge(bqd, place.ToString(), repoData.Lang);
             var viewModel = new Top1000BadgeViewModel(badge);
 
             return View("Top1000Badge", viewModel);

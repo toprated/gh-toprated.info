@@ -11,7 +11,7 @@ namespace TopRatedApp.Common.BadgeClasses.Badges
         {
             var topRatedSectionStyle = DefaultTextSectionStyle;
             topRatedSectionStyle.BackgroundColor = Color.TopRated;
-            if (_place.Equals(""))
+            if (_place.Equals("0"))
             {
                 _place = ">1000";
             }

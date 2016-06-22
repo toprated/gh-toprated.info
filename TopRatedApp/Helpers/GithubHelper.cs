@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Octokit;
 using TopRatedApp.Common;
 using TopRatedApp.Common.BadgeClasses;
 using TopRatedApp.Common.TopRatedCategories;
@@ -16,29 +17,28 @@ namespace TopRatedApp.Helpers
 {
     public class GitHubHelper
     {
-        private static string ClientDataPath => Path.Combine(AppDomain.CurrentDomain.GetData("DataDirectory").ToString(),
-            "clientData.json");
-
-        internal static async Task<ClientData> GetClientData()
+        public static async Task<GitHubClient> GetClient()
         {
-            using (var reader = File.OpenText(ClientDataPath))
+            var cd = await DataGetter.GetClientData();
+            var c = new GitHubClient(new ProductHeaderValue("TopRated-Badges-for-GitHub-by-elv1s42"));
+            if (!cd.Login.Equals("") && !cd.Password.Equals(""))
             {
-                var fileText = await reader.ReadToEndAsync();
-                return JsonConvert.DeserializeObject<ClientData>(fileText);
+                c.Connection.Credentials = new Credentials(cd.Login, cd.Password);
             }
+            return c;
         }
-        
+
         internal static async Task<string> SaveClientDataAsync(ClientData clientData)
         {
             var result = "Done:)";
             try
             {
                 var data = JsonConvert.SerializeObject(clientData);
-                var current = await GetClientData();
+                var current = await DataGetter.GetClientData();
                 if (current.ClientId.Equals("") && current.ClientSecret.Equals("")
                     && current.Login.Equals("") && current.Password.Equals(""))
                 {
-                    using (var file = File.CreateText(ClientDataPath))
+                    using (var file = File.CreateText(DataGetter.ClientDataPath))
                     {
                         await file.WriteAsync(data);
                     }
@@ -69,7 +69,7 @@ namespace TopRatedApp.Helpers
                     try
                     {
                         Debug.WriteLine($"try #{count}");
-                        var cd = await GetClientData();
+                        var cd = await DataGetter.GetClientData();
                         var credentials = Convert.ToBase64String(
                             Encoding.ASCII.GetBytes(cd.Login + ":" + cd.Password));
                         Debug.WriteLine($"CR: {credentials} " + cd.Login + ":" + cd.Password);
@@ -121,7 +121,7 @@ namespace TopRatedApp.Helpers
             }
             catch (Exception)
             {
-                return new RepoData("0", Languages.UnknownLanguage, 0);
+                return new RepoData("-1", Languages.UnknownLanguage, 0);
             }
         }
 

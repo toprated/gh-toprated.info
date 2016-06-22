@@ -216,9 +216,11 @@
     <Compile Include="Common\BadgeClasses\Language.cs" />
     <Compile Include="Common\BadgeClasses\Languages.cs" />
     <Compile Include="Common\ClientData.cs" />
+    <Compile Include="Common\DataGetter.cs" />
     <Compile Include="Common\RepoData.cs" />
     <Compile Include="Common\BadgeClasses\Section.cs" />
     <Compile Include="Common\BadgeClasses\SectionStyle.cs" />
+    <Compile Include="Common\Top1000Data.cs" />
     <Compile Include="Common\TopRatedCategories\Categories.cs" />
     <Compile Include="Common\TopRatedCategories\Category.cs" />
     <Compile Include="Common\TopRatedCategories\LangTopRatedData.cs" />
@@ -258,9 +260,13 @@
     <Compile Include="Models\TopRatedBadgeViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\BadgesController.cs" />
+    <Compile Include="ScheduledTasks\JonScheduler.cs" />
+    <Compile Include="ScheduledTasks\Top1000Updater.cs" />
     <Compile Include="ScheduledTasks\TopRatedCategoriesUpdater.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\Top1000\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

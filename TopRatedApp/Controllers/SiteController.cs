@@ -19,7 +19,7 @@ namespace TopRatedApp.Controllers
             var csrf = Membership.GeneratePassword(24, 1);
             Session["CSRF:State"] = csrf;
             
-            var cd = await GitHubHelper.GetClientData();
+            var cd = await DataGetter.GetClientData();
 
             var request = new OauthLoginRequest(cd.ClientId)
             {
@@ -38,7 +38,7 @@ namespace TopRatedApp.Controllers
                 if (state != expectedState) throw new InvalidOperationException("SECURITY FAIL!");
                 Session["CSRF:State"] = null;
 
-                var cd = await GitHubHelper.GetClientData();
+                var cd = await DataGetter.GetClientData();
 
                 var token = await _client.Oauth.CreateAccessToken(
                     new OauthTokenRequest(cd.ClientId, cd.ClientSecret, code));

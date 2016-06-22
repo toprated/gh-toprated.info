@@ -13,12 +13,19 @@ namespace TopRatedApp.Extensions
             try
             {
                 var r = await client.Repository.Get(bqd.User, bqd.Repo);
-                var rData = new RepoData(r.Id.ToString(), Languages.GetLangByName(r.Language), r.StargazersCount);
+                var rData = new RepoData(
+                    r.Id.ToString(), 
+                    Languages.GetLangByName(r.Language), 
+                    r.StargazersCount,
+                    0,
+                    bqd.User,
+                    bqd.Repo
+                    );
                 return rData;
             }
             catch (Exception)
             {
-                return new RepoData("-1", Languages.UnknownLanguage, 0);
+                return new RepoData();
             }
         }
     }
