@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using Octokit;
 using TopRatedApp.Common;
 using TopRatedApp.Common.BadgeClasses;
 using TopRatedApp.Common.BadgeClasses.Badges;
@@ -57,11 +58,26 @@ namespace TopRatedApp.Controllers
 
             var req = System.Web.HttpContext.Current.Request;
             var bqd = new BadgeQueryData(req);
-            var repoData = await GitHubHelper.GetRepoData(bqd.User, bqd.Repo);
-
+            var c = await GitHubHelper.GetClient();
+            //var repoData = await GitHubHelper.GetRepoData(bqd.User, bqd.Repo);
+            var repoData = await c.GetRepoData(bqd);
+            Debug.Write("GOOOOO!!!!!!!!!!");
+            foreach (var l in Languages.All)
+            {
+                Debug.WriteLine("l: " + l.Name);
+                var repos = c.Search.SearchRepo(new SearchRepositoriesRequest
+                {
+                    Language = l.OctokitLanguage,
+                    Order = SortDirection.Descending,
+                    SortField = RepoSearchSort.Stars,
+                    PerPage = 100,
+                    Page = 1
+                }).Result.Items;
+                Debug.WriteLine("repo: " + repos.FirstOrDefault()?.FullName);
+            }
             var top1000 = await DataGetter.GetTop1000(repoData.Lang.ApiName);
 
-            var place = top1000.Repos.FirstOrDefault(r => r.UserName.Equals(repoData.UserName)
+            var place = top1000?.Repos?.FirstOrDefault(r => r.UserName.Equals(repoData.UserName)
                                                           && r.RepoName.Equals(repoData.RepoName))?.Place 
                                                           ?? 0;
 

@@ -121,7 +121,7 @@ namespace TopRatedApp.Helpers
             }
             catch (Exception)
             {
-                return new RepoData("-1", Languages.UnknownLanguage, 0);
+                return new RepoData();
             }
         }
 
@@ -135,11 +135,7 @@ namespace TopRatedApp.Helpers
             return url;
 
         }
-
-        //public static async Task<string> GetTopPercent(IRepoData repoData)
-        //{
-        //}
-
+        
         public static async Task<ILangTopRatedData> GetTopCategories(ILanguage lang)
         {
             var data = new LangTopRatedData();

@@ -43,8 +43,6 @@ namespace TopRatedApp.Common
                 var trigger = (ISimpleTrigger)TriggerBuilder.Create()
                     .StartNow()
                     .Build();
-                //TriggerBuilder.Create()
-                //.StartNow().Build();
 
                 scheduler.ScheduleJob(job, trigger);
                 return null;

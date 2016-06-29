@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Octokit;
 using TopRatedApp.Enums;
 
 namespace TopRatedApp.Interfaces
@@ -8,6 +9,8 @@ namespace TopRatedApp.Interfaces
     {
         [JsonProperty(PropertyName = "name")]
         string Name { get; set; }
+
+        Language OctokitLanguage { get; set; }
 
         string ApiName { get; set; }
 
